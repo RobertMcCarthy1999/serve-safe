@@ -30,12 +30,30 @@ export async function POST(req) {
     });
 
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: [landlordEmail, tenantEmail],
-      subject: 'New Tenant Documents',
-      text: 'Please find the required tenancy documents attached.',
-      attachments,
-    };
+  from: process.env.EMAIL_USER,
+  to: [landlordEmail, tenantEmail],
+  subject: 'New Tenant Documents',
+  text: `
+Dear Tenant,
+
+Your landlord has sent you the following legally required documents:
+
+${attachments.map(file => `- ${file.filename}`).join('\n')}
+
+📅 Date Sent: ${new Date().toLocaleString()}
+👤 Tenant Email: ${tenantEmail}
+🏠 Landlord Email: ${landlordEmail}
+
+These documents are provided in accordance with Section 213 of the Housing Act 2004, which requires landlords in England to serve deposit protection and prescribed information within 30 days of receiving the deposit.
+
+Please retain this email as proof of service.
+
+Best regards,  
+ServeSafe
+  `,
+  attachments,
+};
+
 
     await transporter.sendMail(mailOptions);
     return NextResponse.json({ message: 'Emails sent successfully' });
