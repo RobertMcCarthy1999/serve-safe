@@ -17,6 +17,7 @@ export default function HomePage() {
   const [landlordEmail, setLandlordEmail] = useState('');
   const [tenantEmail, setTenantEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [propertyAddress, setPropertyAddress] = useState('');
 
   const handleFileChange = (id, file) => {
     setFiles((prev) => ({ ...prev, [id]: file }));
@@ -28,6 +29,7 @@ export default function HomePage() {
     const formData = new FormData();
     formData.append('landlordEmail', landlordEmail);
     formData.append('tenantEmail', tenantEmail);
+    formData.append('propertyAddress', propertyAddress);
 
     requiredDocs.forEach(({ id }) => {
       if (files[id]) formData.append(id, files[id]);
@@ -105,6 +107,24 @@ const handleReset = () => {
 />
   </div>
 ))}
+
+<div style={{ marginBottom: '1.5rem' }}>
+  <label style={{ fontWeight: 'bold', display: 'block', marginBottom: '0.5rem' }}>
+    Property Address
+  </label>
+  <input
+    type="text"
+    required
+    value={propertyAddress}
+    onChange={(e) => setPropertyAddress(e.target.value)}
+    style={{
+      width: '100%',
+      padding: '0.5rem',
+      borderRadius: '6px',
+      border: '1px solid #ccc',
+    }}
+  />
+</div>
 
 
           <div style={{ marginBottom: '1.5rem' }}>
