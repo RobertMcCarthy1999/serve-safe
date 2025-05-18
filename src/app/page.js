@@ -139,7 +139,7 @@ const handleReset = () => {
       borderRadius: '6px',
       border: '1px solid #ccc',
     }}
-    value={landlordEmail}
+    value={tenantEmail}
     onChange={(e) => setTenantEmail(e.target.value)}
   />
 </div>
