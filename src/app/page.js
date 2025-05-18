@@ -44,16 +44,16 @@ export default function HomePage() {
     setMessage(data.message);
 
     if (res.ok) {
-      setFiles({});
-      setLandlordEmail('');
-      setTenantEmail('');
-    }
+  // Don't reset yet — keep values for the confirmation screen
+}
+
   };
 const handleReset = () => {
   setMessage('');
   setFiles({});
   setLandlordEmail('');
   setTenantEmail('');
+  setPropertyAddress('');
 };
   return (
   <div style={{ maxWidth: 600, margin: 'auto', backgroundColor: '#f9f9f9', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}>
