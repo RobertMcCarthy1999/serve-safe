@@ -133,16 +133,17 @@ const handleReset = () => {
   <input
     type="email"
     required
+    value={tenantEmail}  // ✅ Must be tenantEmail
+    onChange={(e) => setTenantEmail(e.target.value)}  // ✅ Must update tenantEmail
     style={{
       width: '100%',
       padding: '0.5rem',
       borderRadius: '6px',
       border: '1px solid #ccc',
     }}
-    value={tenantEmail}
-    onChange={(e) => setTenantEmail(e.target.value)}
   />
 </div>
+
 
           <button
   type="submit"
