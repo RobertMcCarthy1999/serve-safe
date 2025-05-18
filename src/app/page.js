@@ -73,18 +73,42 @@ const handleReset = () => {
       </p>
     </header>
       {message === 'Emails sent successfully' ? (
-        <div style={{ padding: '2rem', textAlign: 'center' }}>
-          <h2>✅ Documents Sent!</h2>
-          <p>All files were successfully emailed to the tenant and landlord.</p>
-        <button
-  onClick={handleReset}
-  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mt-4"
->
-  Send Another
-</button>
+  <div style={{ padding: '2rem', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
+    <h2 style={{ textAlign: 'center' }}>✅ Delivery Confirmation</h2>
 
-        </div>
-      ) : (
+    <p><strong>Date Sent:</strong> {new Date().toLocaleString()}</p>
+    <p><strong>Property Address:</strong> {propertyAddress}</p>
+    <p><strong>Tenant Email:</strong> {tenantEmail}</p>
+    <p><strong>Landlord Email:</strong> {landlordEmail}</p>
+
+    <p><strong>Documents Sent:</strong></p>
+    <ul style={{ textAlign: 'left' }}>
+      {Object.values(files).map((file, idx) => (
+        <li key={idx}>{file.name}</li>
+      ))}
+    </ul>
+
+    <p style={{ fontSize: '0.85rem', color: '#444', marginTop: '1rem' }}>
+      These documents were sent in accordance with <strong>Section 213 of the Housing Act 2004</strong>.
+      Please retain this confirmation as evidence of service.
+    </p>
+
+    <button
+      onClick={() => window.print()}
+      className="bg-gray-200 hover:bg-gray-300 font-semibold py-2 px-4 rounded mt-4"
+    >
+      📄 Print / Save as PDF
+    </button>
+
+    <button
+      onClick={handleReset}
+      className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mt-4 ml-3"
+    >
+      Send Another
+    </button>
+  </div>
+) : (
+
         <form onSubmit={handleSubmit}>
           <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
   Upload required documents
