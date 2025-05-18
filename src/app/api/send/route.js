@@ -6,6 +6,7 @@ export async function POST(req) {
     const formData = await req.formData();
     const landlordEmail = formData.get('landlordEmail');
     const tenantEmail = formData.get('tenantEmail');
+    const propertyAddress = formData.get('propertyAddress');
 
     const attachments = [];
 
@@ -36,7 +37,9 @@ export async function POST(req) {
   text: `
 Dear Tenant,
 
-Your landlord has sent you the following legally required documents:
+Your landlord has sent you the following legally required documents for the tenancy at:
+
+🏡 Property Address: ${propertyAddress}
 
 ${attachments.map(file => `- ${file.filename}`).join('\n')}
 
