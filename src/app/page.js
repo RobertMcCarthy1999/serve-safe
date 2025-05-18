@@ -70,7 +70,7 @@ const handleReset = () => {
   <img
     src="/images/servesafe-logo.png"
     alt="ServeSafe Logo"
-    style={{ maxWidth: '180px', margin: '0 auto', display: 'block' }}
+    style={{ maxWidth: '300px', margin: '0 auto', display: 'block' }}
   />
   <p style={{ marginTop: '0.5rem' }}>
     Send required tenant documents securely
