@@ -58,20 +58,25 @@ const handleReset = () => {
   return (
   <div style={{ maxWidth: 600, margin: 'auto', backgroundColor: '#f9f9f9', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}>
     <header
-      style={{
-        backgroundColor: '#0070f3',
-        color: 'white',
-        padding: '1rem 2rem',
-        borderRadius: '12px 12px 0 0',
-        textAlign: 'center',
-        marginBottom: '2rem',
-      }}
-    >
-      <h1 style={{ fontSize: '2rem', margin: 0 }}>ServeSafe</h1>
-      <p style={{ margin: '0.25rem 0 0' }}>
-        Send required tenant documents securely
-      </p>
-    </header>
+  style={{
+    backgroundColor: '#0070f3',
+    color: 'white',
+    padding: '1rem 2rem',
+    borderRadius: '12px 12px 0 0',
+    textAlign: 'center',
+    marginBottom: '2rem',
+  }}
+>
+  <img
+    src="/images/servesafe-logo.png"
+    alt="ServeSafe Logo"
+    style={{ maxWidth: '180px', margin: '0 auto', display: 'block' }}
+  />
+  <p style={{ marginTop: '0.5rem' }}>
+    Send required tenant documents securely
+  </p>
+</header>
+
       {message === 'Emails sent successfully' ? (
   <div style={{ padding: '2rem', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
     <h2 style={{ textAlign: 'center' }}>✅ Delivery Confirmation</h2>
