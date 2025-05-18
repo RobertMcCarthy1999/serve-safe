@@ -133,7 +133,7 @@ const handleReset = () => {
   <input
     type="email"
     required
-    value={tenantEmail}
+    value={tenantEmail}  // ✅ must match the state
     onChange={(e) => setTenantEmail(e.target.value)}
     style={{
       width: '100%',
@@ -143,6 +143,7 @@ const handleReset = () => {
     }}
   />
 </div>
+
 
 
           <button
