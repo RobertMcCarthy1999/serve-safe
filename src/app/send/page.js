@@ -1,4 +1,5 @@
 'use client';
+import NavBar from './components/NavBar';
 
 import { useState } from 'react';
 
@@ -56,7 +57,9 @@ export default function SendPage() {
     setPropertyAddress('');
   };
 
-  return (
+  return(
+    <>
+    <NavBar />
     <div
       style={{
         maxWidth: 600,
