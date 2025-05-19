@@ -44,38 +44,62 @@ export default function HomePage() {
     setMessage(data.message);
 
     if (res.ok) {
-  // Don't reset yet — keep values for the confirmation screen
-}
-
+      // Don't reset yet — keep values for the confirmation screen
+    }
   };
-const handleReset = () => {
-  setMessage('');
-  setFiles({});
-  setLandlordEmail('');
-  setTenantEmail('');
-  setPropertyAddress('');
-};
+
+  const handleReset = () => {
+    setMessage('');
+    setFiles({});
+    setLandlordEmail('');
+    setTenantEmail('');
+    setPropertyAddress('');
+  };
+
   return (
-  <div style={{ maxWidth: 600, margin: 'auto', backgroundColor: '#f9f9f9', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}>
-    <header
+    <div
+      style={{
+        maxWidth: 600,
+        margin: 'auto',
+        backgroundColor: '#f9f9f9',
+        padding: '2rem',
+        borderRadius: '12px',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+      }}
+    >
+      <header
   style={{
     backgroundColor: '#0070f3',
     color: 'white',
-    padding: '1rem 2rem',
+    padding: '0.75rem 1rem 0.5rem',
     borderRadius: '12px 12px 0 0',
     textAlign: 'center',
-    marginBottom: '2rem',
+    marginBottom: '1rem',
   }}
 >
   <img
     src="/images/servesafe-logo.png"
     alt="ServeSafe Logo"
-    style={{ maxWidth: '300px', margin: '0 auto', display: 'block' }}
+    style={{
+      maxWidth: '400px',
+      height: 'auto',
+      display: 'block',
+      margin: '0 auto 0.25rem', // tiny bottom gap
+    }}
   />
-  <p style={{ marginTop: '0.5rem' }}>
+  <p
+    style={{
+      margin: 0,
+      fontSize: '0.85rem', // smaller to give logo dominance
+      lineHeight: '1.2',
+    }}
+  >
     Send required tenant documents securely
   </p>
 </header>
+
+
+
 
       {message === 'Emails sent successfully' ? (
   <div style={{ padding: '2rem', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
