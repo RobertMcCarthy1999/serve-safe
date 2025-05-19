@@ -10,7 +10,7 @@ export default function NavBar() {
   <img
     src="/images/servesafe-logo-blue.png"
     alt="ServeSafe Logo"
-    className="h-8"
+    className="h-16"
   />
 </Link>
         <div className="space-x-6 text-sm font-medium">
