@@ -232,6 +232,7 @@ export default function SendPage() {
           <p>{message}</p>
         </form>
       )}
-    </div>
+       </div>
+  </>
   );
 }
