@@ -9,4 +9,5 @@ export default function PricingPage() {
 
         <div className="bg-gray-100 rounded-lg shadow-md p-8">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">£9.99/year</h2>
-          <ul className="text-left text-gray-700
+          <ul className="text-left text-gray-700 space-y-3 mb-6">
+
