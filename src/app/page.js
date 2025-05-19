@@ -1,22 +1,25 @@
 import NavBar from './components/NavBar';
+
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-white text-gray-900">
-      {/* Hero Section */}
-      <section className="bg-blue-600 text-white py-16 px-6 text-center">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">ServeSafe for Landlords</h1>
-          <p className="text-lg mb-6">
-            Upload and deliver legally required documents to your tenants in minutes.
-          </p>
-          <a
-            href="/send"
-            className="inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition"
-          >
-            Get Started
-          </a>
-        </div>
-      </section>
+    <>
+      <NavBar />
+      <main className="min-h-screen bg-white text-gray-900">
+        {/* Hero Section */}
+        <section className="bg-blue-600 text-white py-16 px-6 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h1 className="text-4xl font-bold mb-4">ServeSafe for Landlords</h1>
+            <p className="text-lg mb-6">
+              Upload and deliver legally required documents to your tenants in minutes.
+            </p>
+            <a
+              href="/send"
+              className="inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition"
+            >
+              Get Started
+            </a>
+          </div>
+        </section>
 
       {/* Features Section */}
       <section className="py-16 px-6 bg-gray-50">
