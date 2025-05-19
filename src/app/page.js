@@ -51,13 +51,7 @@ export default function HomePage() {
           >
             Upload Now
           </a>
-          <p className="mt-6 text-sm text-gray-600">
-            Or{' '}
-            <a href="/pricing" className="text-blue-600 underline hover:text-blue-800">
-              view pricing
-            </a>{' '}
-            first.
-          </p>
+          
         </section>
       </main>
     </>
