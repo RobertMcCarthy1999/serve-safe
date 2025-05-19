@@ -33,7 +33,7 @@ export default function FAQPage() {
             <div>
               <h2 className="text-xl font-semibold mb-2">✅ Is this legally compliant?</h2>
               <p>
-                Yes. ServeSafe is designed around the UK's legal requirements for landlords,
+                Yes. ServeSafe is designed around the UK&apos;s legal requirements
                 especially under Section 213 of the Housing Act 2004. It helps you document and
                 prove delivery of important documents.
               </p>
