@@ -1,6 +1,6 @@
 'use client';
 import NavBar from '../components/NavBar';
-
+import Footer from '../components/footer'
 import { useState } from 'react';
 
 const requiredDocs = [
