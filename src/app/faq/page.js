@@ -1,17 +1,19 @@
 'use client';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 export default function FAQPage() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen bg-white text-gray-800">
       <NavBar />
-      <main className="min-h-screen bg-white px-6 py-12">
+
+      <main className="flex-grow px-6 py-12">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl font-bold text-blue-700 text-center mb-8">
             Frequently Asked Questions
           </h1>
 
-          <div className="space-y-8 text-gray-800">
+          <div className="space-y-8">
             <div>
               <h2 className="text-xl font-semibold mb-2">📄 What documents can I send?</h2>
               <p>
@@ -33,9 +35,9 @@ export default function FAQPage() {
             <div>
               <h2 className="text-xl font-semibold mb-2">✅ Is this legally compliant?</h2>
               <p>
-                Yes. ServeSafe is designed around the UK&apos;s legal requirements
-                especially under Section 213 of the Housing Act 2004. It helps you document and
-                prove delivery of important documents.
+                Yes. ServeSafe is designed around the UK&apos;s legal requirements, especially under
+                Section 213 of the Housing Act 2004. It helps you document and prove delivery of
+                important documents.
               </p>
             </div>
 
@@ -57,6 +59,8 @@ export default function FAQPage() {
           </div>
         </div>
       </main>
-    </>
+
+      <Footer />
+    </div>
   );
 }
