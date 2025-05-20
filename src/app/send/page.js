@@ -1,6 +1,6 @@
 'use client';
 import NavBar from '../components/NavBar';
-import Footer from '../components/footer'
+import Footer from '../components/Footer';
 import { useState } from 'react';
 
 const requiredDocs = [
@@ -233,6 +233,8 @@ export default function SendPage() {
         </form>
       )}
        </div>
+       <Footer />
   </>
+  
   );
 }
