@@ -1,11 +1,12 @@
 'use client';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 export default function PricingPage() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <NavBar />
-      <main className="min-h-screen bg-white px-6 py-12">
+      <main className="flex-grow bg-white px-6 py-12">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl font-bold mb-4 text-blue-700">Simple, Legal & Affordable</h1>
           <p className="text-lg text-gray-700 mb-10">
@@ -30,12 +31,13 @@ export default function PricingPage() {
               Pay £9.99 & Get Started
             </button>
 
-            <p className="text-sm text-gray-500 mt-4">No recurring charges. Just one simple annual fee.</p>
+            <p className="text-sm text-gray-500 mt-4">
+              No recurring charges. Just one simple annual fee.
+            </p>
           </div>
         </div>
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }
-
-

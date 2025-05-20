@@ -3,9 +3,10 @@ import Footer from './components/Footer'; // for most pages
 
 export default function HomePage() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <NavBar />
-      <main className="min-h-screen bg-white text-gray-900">
+
+      <main className="flex-grow bg-white text-gray-900">
         {/* Hero Section */}
         <section className="bg-blue-600 text-white py-16 px-6 text-center">
           <div className="max-w-3xl mx-auto">
@@ -52,10 +53,10 @@ export default function HomePage() {
           >
             Upload Now
           </a>
-          
         </section>
       </main>
-    
-    </>
+
+      <Footer />
+    </div>
   );
 }

@@ -1,13 +1,12 @@
 'use client';
 import NavBar from '../components/NavBar';
-
-
+import Footer from '../components/Footer';
 import { useState } from 'react';
 
 export default function UploadPage() {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState('');
-  const [fileUrl, setFileUrl] = useState(null); // <-- Store uploaded file path
+  const [fileUrl, setFileUrl] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,39 +24,51 @@ export default function UploadPage() {
     setMessage(data.message || 'Upload complete');
 
     if (data.path) {
-      setFileUrl(data.path); // <-- Set file URL returned from backend
+      setFileUrl(data.path);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-        <button type="submit">Upload</button>
-      </form>
+    <div className="flex flex-col min-h-screen">
+      <NavBar />
 
-      <p>{message}</p>
+      <main className="flex-grow p-6 bg-white text-gray-900">
+        <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
+          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Upload
+          </button>
+        </form>
 
-      {fileUrl && (
-        <div>
-          <h3>Uploaded File Preview:</h3>
-          {/* Image preview */}
-          {file?.type.startsWith('image/') ? (
-            <img src={fileUrl} alt="Uploaded File" style={{ maxWidth: '300px', marginTop: '10px' }} />
-          ) : (
-            <a href={fileUrl} target="_blank" rel="noopener noreferrer">
-              View Uploaded File
-            </a>
-          )}
-        </div>
-      )}
+        <p className="text-center mt-4">{message}</p>
+
+        {fileUrl && (
+          <div className="mt-6 text-center">
+            <h3 className="text-lg font-semibold mb-2">Uploaded File Preview:</h3>
+            {file?.type.startsWith('image/') ? (
+              <img
+                src={fileUrl}
+                alt="Uploaded File"
+                className="max-w-xs mx-auto rounded shadow"
+              />
+            ) : (
+              <a
+                href={fileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline"
+              >
+                View Uploaded File
+              </a>
+            )}
+          </div>
+        )}
+      </main>
+
+      <Footer />
     </div>
   );
 }
-
-
-
-
-
-
-
