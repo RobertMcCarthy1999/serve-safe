@@ -1,6 +1,5 @@
 'use client';
 import NavBar from '../components/NavBar';
-import Footer from '../components/Footer';
 
 export default function FAQPage() {
   return (
@@ -58,7 +57,6 @@ export default function FAQPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }
