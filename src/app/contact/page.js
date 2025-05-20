@@ -8,7 +8,7 @@ export default function ContactPage() {
       <main className="min-h-screen bg-white px-6 py-12">
         <div className="max-w-xl mx-auto text-center">
           <h1 className="text-3xl font-bold text-blue-700 mb-6">Contact Us</h1>
-          <p className="mb-8 text-gray-700">Got a question or feedback? We'd love to hear from you.</p>
+          <p className="mb-8 text-gray-700">Got a question or feedback? We&apos;d love to hear from you.</p>
 
           <form className="space-y-4 text-left">
             <div>
