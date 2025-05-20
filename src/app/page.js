@@ -1,4 +1,5 @@
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 export default function HomePage() {
   return (
@@ -54,6 +55,7 @@ export default function HomePage() {
           
         </section>
       </main>
+      <Footer />
     </>
   );
 }
