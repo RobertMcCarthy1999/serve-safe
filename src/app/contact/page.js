@@ -1,6 +1,5 @@
 'use client';
 import NavBar from '../components/NavBar';
-import Footer from '../components/Footer';
 
 export default function ContactPage() {
   return (
@@ -38,7 +37,7 @@ export default function ContactPage() {
           </form>
         </div>
       </main>
-      <Footer />
+      
     </>
   );
 }
