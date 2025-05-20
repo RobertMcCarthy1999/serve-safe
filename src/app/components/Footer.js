@@ -1,9 +1,12 @@
+'use client';
+
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: 'red', padding: '2rem', textAlign: 'center' }}>
-      <p>TEST FOOTER VISIBLE</p>
+    <footer className="bg-red-500 text-white text-center py-6 mt-12">
+      TEST FOOTER — visible?
     </footer>
   );
 }
+
 
 
