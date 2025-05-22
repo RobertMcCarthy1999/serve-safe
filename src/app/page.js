@@ -41,7 +41,7 @@ export default function Dashboard() {
       <div className="max-w-6xl mx-auto">
         {/* Welcome Header */}
         <div className="bg-white rounded-2xl shadow p-6 mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Welcome, John 👋</h1>
+          <h1 className="text-3xl font-bold text-gray-800">Welcome, Robert 👋</h1>
           <p className="text-gray-600 mt-2">
             Here’s your LetSuite lettings toolkit — manage legal docs, rent, repairs and more.
           </p>
