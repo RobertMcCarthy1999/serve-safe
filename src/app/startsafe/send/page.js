@@ -1,6 +1,6 @@
 'use client';
-import NavBar from '../components/NavBar';
-import Footer from '../components/Footer';
+import NavBar from '@/app/components/NavBar'
+import Footer from '@/app/components/Footer'
 import { useState } from 'react';
 
 const requiredDocs = [
@@ -74,11 +74,11 @@ export default function SendPage() {
             }}
           >
             <img
-              src="/images/servesafe-logo.png"
-              alt="ServeSafe Logo"
+              src="/images/startsafe-logo-white.png"
+              alt="StartSafe Logo"
               style={{
                 maxWidth: '400px',
-                height: 'auto',
+                height: 'autopx',
                 display: 'block',
                 margin: '0 auto 0.25rem',
               }}
