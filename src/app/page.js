@@ -6,7 +6,7 @@ import NotifyModal from "@/app/components/NotifyModal";
 export default function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedTool, setSelectedTool] = useState("");
-
+  const [showBanner, setShowBanner] = useState(true);
   const openModal = (tool) => {
     setSelectedTool(tool);
     setModalOpen(true);
@@ -19,6 +19,23 @@ export default function Dashboard() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100 p-6">
+
+{/* 🚀 Launch Banner with Dismiss */}
+{showBanner && (
+  <div className="relative bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white text-center rounded-lg shadow-lg py-4 px-6 mb-6">
+    <button
+      onClick={() => setShowBanner(false)}
+      className="absolute top-2 right-4 text-white text-xl hover:opacity-80"
+      aria-label="Dismiss banner"
+    >
+      &times;
+    </button>
+    🎉 <strong>LetSuite is now live!</strong> Start with StartSafe or join the waitlist for upcoming tools.
+  </div>
+)}
+
+
+
       <NotifyModal toolName={selectedTool} isOpen={modalOpen} onClose={closeModal} />
 
       <div className="max-w-6xl mx-auto">
