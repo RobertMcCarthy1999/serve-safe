@@ -39,7 +39,20 @@ export default function Dashboard() {
       <NotifyModal toolName={selectedTool} isOpen={modalOpen} onClose={closeModal} />
 
       <div className="max-w-6xl mx-auto">
-        {/* Welcome Header */}
+
+  {/* Logo */}
+  <div className="flex justify-center mb-6">
+    <img
+      src="/images/letsuite-logo.png"
+      alt="LetSuite logo"
+      className="h-14 md:h-20 object-contain"
+    />
+  </div>
+
+  {/* Welcome Header */}
+
+
+
         <div className="bg-white rounded-2xl shadow p-6 mb-8">
           <h1 className="text-3xl font-bold text-gray-800">Welcome, Robert 👋</h1>
           <p className="text-gray-600 mt-2">
