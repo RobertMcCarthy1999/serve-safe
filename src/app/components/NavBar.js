@@ -17,11 +17,12 @@ export default function NavBar() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex space-x-6 text-sm font-medium">
+        <div className="hidden md:flex space-x-6 text-sm font-medium items-center">
           <Link href="/startsafe/send" className="text-gray-700 hover:text-blue-600">Upload Docs</Link>
           <Link href="/pricing" className="text-gray-700 hover:text-blue-600">Pricing</Link>
           <Link href="/faq" className="text-gray-700 hover:text-blue-600">FAQ</Link>
           <Link href="/contact" className="text-gray-700 hover:text-blue-600">Contact</Link>
+          <Link href="/" className="text-blue-600 hover:underline ml-4">← Back to Dashboard</Link>
         </div>
 
         {/* Mobile menu button */}
@@ -37,15 +38,17 @@ export default function NavBar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden px-6 pb-4 space-y-3 text-sm font-medium">
-          <Link href="/send" className="block text-gray-700 hover:text-blue-600">Upload Docs</Link>
+          <Link href="/startsafe/send" className="block text-gray-700 hover:text-blue-600">Upload Docs</Link>
           <Link href="/pricing" className="block text-gray-700 hover:text-blue-600">Pricing</Link>
           <Link href="/faq" className="block text-gray-700 hover:text-blue-600">FAQ</Link>
           <Link href="/contact" className="block text-gray-700 hover:text-blue-600">Contact</Link>
+          <Link href="/" className="block text-blue-600 hover:underline">← Back to Dashboard</Link>
         </div>
       )}
     </nav>
   );
 }
+
 
 
 
