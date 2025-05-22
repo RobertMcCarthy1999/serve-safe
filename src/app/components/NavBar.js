@@ -22,7 +22,7 @@ export default function NavBar() {
           <Link href="/pricing" className="text-gray-700 hover:text-blue-600">Pricing</Link>
           <Link href="/faq" className="text-gray-700 hover:text-blue-600">FAQ</Link>
           <Link href="/contact" className="text-gray-700 hover:text-blue-600">Contact</Link>
-          <Link href="/" className="text-blue-600 hover:underline ml-4">← Back to Dashboard</Link>
+          <Link href="/" className="text-blue-600 hover:underline ml-4">← Home Base</Link>
         </div>
 
         {/* Mobile menu button */}
