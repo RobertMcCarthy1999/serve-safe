@@ -38,9 +38,9 @@ export default function Dashboard() {
 
       <NotifyModal toolName={selectedTool} isOpen={modalOpen} onClose={closeModal} />
 
-{/* LetSuite Logo - aligned with content boxes and styled */}
-<div className="max-w-6xl mx-auto px-4 mb-6">
-  <div className="bg-white rounded-2xl shadow p-6 flex justify-center">
+{/* LetSuite Logo - left aligned and matching white box styling */}
+<div className="max-w-6xl mx-auto mb-6">
+  <div className="bg-white rounded-2xl shadow p-6 w-fit">
     <img
       src="/images/letsuite-logo.png"
       alt="LetSuite logo"
@@ -49,7 +49,6 @@ export default function Dashboard() {
   </div>
 </div>
 
-<div className="max-w-6xl mx-auto">
 
 
 
