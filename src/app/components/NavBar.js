@@ -42,7 +42,7 @@ export default function NavBar() {
           <Link href="/pricing" className="block text-gray-700 hover:text-blue-600">Pricing</Link>
           <Link href="/faq" className="block text-gray-700 hover:text-blue-600">FAQ</Link>
           <Link href="/contact" className="block text-gray-700 hover:text-blue-600">Contact</Link>
-          <Link href="/" className="block text-blue-600 hover:underline">← Home base</Link> 
+          <Link href="/" className="block text-blue-600 hover:underline">← Home Base</Link> 
         </div>
       )}
     </nav>
