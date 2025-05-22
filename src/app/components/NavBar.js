@@ -42,7 +42,7 @@ export default function NavBar() {
           <Link href="/pricing" className="block text-gray-700 hover:text-blue-600">Pricing</Link>
           <Link href="/faq" className="block text-gray-700 hover:text-blue-600">FAQ</Link>
           <Link href="/contact" className="block text-gray-700 hover:text-blue-600">Contact</Link>
-          <Link href="/" className="block text-blue-600 hover:underline">← Back to Dashboard</Link> // nav updated with back to dashboard link
+          <Link href="/" className="block text-blue-600 hover:underline">← Back to Dashboard</Link> 
         </div>
       )}
     </nav>
