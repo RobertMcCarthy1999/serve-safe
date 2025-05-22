@@ -19,40 +19,35 @@ export default function Dashboard() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100 p-6">
-
-{/* 🚀 Launch Banner with Dismiss */}
-{showBanner && (
-  <div className="relative bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white text-center rounded-lg shadow-lg py-4 px-6 mb-6">
-    <button
-      onClick={() => setShowBanner(false)}
-      className="absolute top-2 right-4 text-white text-xl hover:opacity-80"
-      aria-label="Dismiss banner"
-    >
-      &times;
-    </button>
-    🎉 <strong>LetSuite is now live!</strong> Start with StartSafe or join the waitlist for upcoming tools.
-  </div>
-)}
-
-
+      {/* 🚀 Launch Banner with Dismiss */}
+      {showBanner && (
+        <div className="relative bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white text-center rounded-lg shadow-lg py-4 px-6 mb-6">
+          <button
+            onClick={() => setShowBanner(false)}
+            className="absolute top-2 right-4 text-white text-xl hover:opacity-80"
+            aria-label="Dismiss banner"
+          >
+            &times;
+          </button>
+          🎉 <strong>LetSuite is now live!</strong> Start with StartSafe or join the waitlist for upcoming tools.
+        </div>
+      )}
 
       <NotifyModal toolName={selectedTool} isOpen={modalOpen} onClose={closeModal} />
 
-{/* LetSuite Logo - left aligned and matching white box styling */}
-<div className="max-w-6xl mx-auto mb-6">
-  <div className="bg-white rounded-2xl shadow p-6 w-fit">
-    <img
-      src="/images/letsuite-logo.png"
-      alt="LetSuite logo"
-      className="h-16 object-contain"
-    />
-  </div>
-</div>
+      {/* LetSuite Logo - left aligned and matching white box styling */}
+      <div className="max-w-6xl mx-auto mb-6">
+        <div className="bg-white rounded-2xl shadow p-6 w-fit">
+          <img
+            src="/images/letsuite-logo.png"
+            alt="LetSuite logo"
+            className="h-16 object-contain"
+          />
+        </div>
+      </div>
 
-
-
-
-
+      <div className="max-w-6xl mx-auto">
+        {/* Welcome Header */}
         <div className="bg-white rounded-2xl shadow p-6 mb-8">
           <h1 className="text-3xl font-bold text-gray-800">Welcome, Robert 👋</h1>
           <p className="text-gray-600 mt-2">
@@ -117,4 +112,3 @@ function StatCard({ label, value }) {
     </div>
   );
 }
-
