@@ -1,4 +1,3 @@
-import StartSafeOnboardingModal from '@/app/components/StartSafeOnboardingModal';
 import NavBar from '@/app/components/NavBar';
 import Footer from '@/app/components/Footer';
 
@@ -6,7 +5,6 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       <NavBar />
-      <StartSafeOnboardingModal />
 
       <main className="flex-grow bg-white text-gray-900">
         {/* Hero Section */}
@@ -25,7 +23,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Features Section */}
+        {/* Why Use StartSafe */}
         <section className="py-16 px-6 bg-gray-50">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl font-bold mb-8">Why Use StartSafe?</h2>
@@ -46,6 +44,41 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* How It Works */}
+        <section className="py-16 px-6 bg-white border-t border-gray-100">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl font-bold mb-8">How StartSafe Works</h2>
+            <div className="grid md:grid-cols-3 gap-8 text-left">
+              <div>
+                <h3 className="text-lg font-semibold mb-2">1️⃣ Upload Legal Docs</h3>
+                <p>Upload your EPC, How to Rent guide, gas safety certificate, and more in one place.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-2">2️⃣ Add Tenant Details</h3>
+                <p>Just an email address — no long forms. We’ll handle the delivery log.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-2">3️⃣ Send with Proof</h3>
+                <p>Your tenant gets the files instantly, and you get a PDF record of delivery.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Landlords Trust StartSafe */}
+        <section className="py-16 px-6 bg-gray-50 border-t border-gray-100">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl font-bold mb-6">Why Landlords Trust StartSafe</h2>
+            <ul className="space-y-4 text-left text-gray-700">
+              <li>✅ Built for UK legal compliance</li>
+              <li>✅ Send documents in under 5 minutes</li>
+              <li>✅ Get automatic proof-of-delivery logs</li>
+              <li>✅ No logins or portals for your tenants</li>
+              <li>✅ Clear audit trail for every tenancy</li>
+            </ul>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-16 px-6 text-center">
           <h2 className="text-2xl font-bold mb-4">Ready to send your documents?</h2>
@@ -62,3 +95,4 @@ export default function HomePage() {
     </div>
   );
 }
+
