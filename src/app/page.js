@@ -7,6 +7,7 @@ export default function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedTool, setSelectedTool] = useState("");
   const [showBanner, setShowBanner] = useState(true);
+
   const openModal = (tool) => {
     setSelectedTool(tool);
     setModalOpen(true);
@@ -19,7 +20,7 @@ export default function Dashboard() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100 p-6">
-      {/* 🚀 Launch Banner with Dismiss */}
+      {/* 🚀 Launch Banner */}
       {showBanner && (
         <div className="relative bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white text-center rounded-lg shadow-lg py-4 px-6 mb-6">
           <button
@@ -35,14 +36,10 @@ export default function Dashboard() {
 
       <NotifyModal toolName={selectedTool} isOpen={modalOpen} onClose={closeModal} />
 
-      {/* LetSuite Logo - left aligned and matching white box styling */}
+      {/* Logo */}
       <div className="max-w-6xl mx-auto mb-6">
         <div className="bg-white rounded-2xl shadow p-6 w-fit">
-          <img
-            src="/images/letsuite-logo.png"
-            alt="LetSuite logo"
-            className="h-16 object-contain"
-          />
+          <img src="/images/letsuite-logo.png" alt="LetSuite logo" className="h-16 object-contain" />
         </div>
       </div>
 
@@ -55,13 +52,16 @@ export default function Dashboard() {
           </p>
         </div>
 
-        {/* Toolkit Grid */}
+        {/* Tools Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
-          <ToolCard title="StartSafe" status="Available" action="Use Now" color="bg-green-500" onClick={() => (window.location.href = "/startsafe")} />
-          <ToolCard title="RentFlow" status="Coming Soon" action="Notify Me" color="bg-blue-500" onClick={() => openModal("RentFlow")} />
-          <ToolCard title="FixLog" status="Planned" action="Notify Me" color="bg-orange-500" onClick={() => openModal("FixLog")} />
-          <ToolCard title="DocVault" status="Planned" action="Notify Me" color="bg-purple-500" onClick={() => openModal("DocVault")} />
+          <ToolCard title="StartSafe" status="Live" action="Use Now" color="bg-green-500" onClick={() => window.location.href = "/startsafe"} />
+          <ToolCard title="ServeSafe" status="Planned" action="Notify Me" color="bg-blue-500" onClick={() => openModal("ServeSafe")} />
           <ToolCard title="TenantScore" status="Planned" action="Notify Me" color="bg-yellow-500" onClick={() => openModal("TenantScore")} />
+          <ToolCard title="KeyTrack" status="Planned" action="Notify Me" color="bg-indigo-500" onClick={() => openModal("KeyTrack")} />
+          <ToolCard title="DocVault" status="Planned" action="Notify Me" color="bg-purple-500" onClick={() => openModal("DocVault")} />
+          <ToolCard title="FixLog" status="Planned" action="Notify Me" color="bg-orange-500" onClick={() => openModal("FixLog")} />
+          <ToolCard title="InventoryPro" status="Planned" action="Notify Me" color="bg-rose-500" onClick={() => openModal("InventoryPro")} />
+          <ToolCard title="LLM Bot Assistant" status="Later Stage" action="Notify Me" color="bg-gray-500" onClick={() => openModal("LLM Bot Assistant")} />
         </div>
 
         {/* Quick Stats */}
