@@ -140,7 +140,7 @@ export default function StartSafeOnboardingModal() {
               className="accent-blue-600"
               id="dontShowCheckbox"
             />
-            <span>Don't show this again</span>
+            <span>Don&apos;t show this again</span>
           </label>
           <button
             onClick={() => {
