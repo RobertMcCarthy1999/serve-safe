@@ -18,9 +18,19 @@ export default function Dashboard() {
     setSelectedTool("");
   };
 
+  const toolDescriptions = {
+    "StartSafe": "Upload and deliver all 7 legally required tenancy start documents.",
+    "ServeSafe": "Send legal notices like Section 21, Section 8 with proof.",
+    "TenantScore": "Collect feedback and scores to build tenant references.",
+    "KeyTrack": "Track key handovers and returns with timestamped proof.",
+    "DocVault": "Store and share landlord documents — searchable and safe.",
+    "FixLog": "Let tenants report repairs. You get notified + it gets logged.",
+    "InventoryPro": "Create check-in/out inventories with condition photos.",
+    "LLM Bot Assistant": "AI assistant to answer legal landlord questions."
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100 p-6">
-      {/* 🚀 Launch Banner */}
       {showBanner && (
         <div className="relative bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white text-center rounded-lg shadow-lg py-4 px-6 mb-6">
           <button
@@ -36,7 +46,6 @@ export default function Dashboard() {
 
       <NotifyModal toolName={selectedTool} isOpen={modalOpen} onClose={closeModal} />
 
-      {/* Logo */}
       <div className="max-w-6xl mx-auto mb-6">
         <div className="bg-white rounded-2xl shadow p-6 w-fit">
           <img src="/images/letsuite-logo.png" alt="LetSuite logo" className="h-16 object-contain" />
@@ -44,7 +53,6 @@ export default function Dashboard() {
       </div>
 
       <div className="max-w-6xl mx-auto">
-        {/* Welcome Header */}
         <div className="bg-white rounded-2xl shadow p-6 mb-8">
           <h1 className="text-3xl font-bold text-gray-800">Welcome, Robert 👋</h1>
           <p className="text-gray-600 mt-2">
@@ -52,26 +60,35 @@ export default function Dashboard() {
           </p>
         </div>
 
-        {/* Tools Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
-          <ToolCard title="StartSafe" status="Live" action="Use Now" color="bg-green-500" onClick={() => window.location.href = "/startsafe"} />
-          <ToolCard title="ServeSafe" status="Planned" action="Notify Me" color="bg-blue-500" onClick={() => openModal("ServeSafe")} />
-          <ToolCard title="TenantScore" status="Planned" action="Notify Me" color="bg-yellow-500" onClick={() => openModal("TenantScore")} />
-          <ToolCard title="KeyTrack" status="Planned" action="Notify Me" color="bg-indigo-500" onClick={() => openModal("KeyTrack")} />
-          <ToolCard title="DocVault" status="Planned" action="Notify Me" color="bg-purple-500" onClick={() => openModal("DocVault")} />
-          <ToolCard title="FixLog" status="Planned" action="Notify Me" color="bg-orange-500" onClick={() => openModal("FixLog")} />
-          <ToolCard title="InventoryPro" status="Planned" action="Notify Me" color="bg-rose-500" onClick={() => openModal("InventoryPro")} />
-          <ToolCard title="LLM Bot Assistant" status="Later Stage" action="Notify Me" color="bg-gray-500" onClick={() => openModal("LLM Bot Assistant")} />
+          {Object.entries(toolDescriptions).map(([title, description]) => (
+            <ToolCard
+              key={title}
+              title={title}
+              status={title === "StartSafe" ? "Live" : title === "LLM Bot Assistant" ? "Later Stage" : "Planned"}
+              action={title === "StartSafe" ? "Use Now" : "Notify Me"}
+              color={
+                title === "StartSafe" ? "bg-green-500" :
+                title === "ServeSafe" ? "bg-blue-500" :
+                title === "TenantScore" ? "bg-yellow-500" :
+                title === "KeyTrack" ? "bg-indigo-500" :
+                title === "DocVault" ? "bg-purple-500" :
+                title === "FixLog" ? "bg-orange-500" :
+                title === "InventoryPro" ? "bg-rose-500" :
+                "bg-gray-500"
+              }
+              onClick={() => title === "StartSafe" ? window.location.href = "/startsafe" : openModal(title)}
+              description={description}
+            />
+          ))}
         </div>
 
-        {/* Quick Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
           <StatCard label="Notices served" value={3} />
           <StatCard label="New tenancies started" value={2} />
           <StatCard label="Rent receipts sent" value={5} />
         </div>
 
-        {/* Recent Activity */}
         <div className="bg-white p-6 rounded-xl shadow">
           <h2 className="text-lg font-bold mb-4">📋 Recent Activity</h2>
           <ul className="text-sm text-gray-700 space-y-2">
@@ -85,7 +102,7 @@ export default function Dashboard() {
   );
 }
 
-function ToolCard({ title, status, action, color, onClick }) {
+function ToolCard({ title, status, action, color, onClick, description }) {
   return (
     <div className="bg-white rounded-xl shadow p-5 flex flex-col justify-between hover:shadow-md transition">
       <div>
@@ -93,6 +110,7 @@ function ToolCard({ title, status, action, color, onClick }) {
         <span className="inline-block text-xs font-semibold px-2 py-1 rounded bg-gray-100 text-gray-700">
           {status}
         </span>
+        <p className="text-sm text-gray-600 mt-2">{description}</p>
       </div>
       <button
         onClick={onClick}
