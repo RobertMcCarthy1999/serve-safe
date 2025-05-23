@@ -1,7 +1,7 @@
+
 import NavBar from '@/app/components/NavBar';
 import Footer from '@/app/components/Footer';
 import { Upload, UserPlus, CheckCircle } from "lucide-react";
-import Image from 'next/image'; // <-- added import
 
 export default function HomePage() {
   return (
@@ -107,30 +107,21 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Testimonials Section */}
-        <section className="py-16 px-6 bg-white border-t border-gray-100">
-          <div className="max-w-5xl mx-auto text-center">
-            <h2 className="text-2xl font-bold mb-10">What Landlords Are Saying</h2>
-            <div className="grid md:grid-cols-3 gap-6 text-left">
-              <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
-                <p className="text-sm text-gray-700 italic mb-4">
-                  &quot;StartSafe saved me hours of admin and gave me peace of mind I was compliant.&quot;
-                </p>
-                <p className="text-sm font-semibold text-gray-800">— Sarah B., Bristol</p>
-              </div>
-              <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
-                <p className="text-sm text-gray-700 italic mb-4">
-                  &quot;I love that I can prove everything was delivered. No more disputes.&quot;
-                </p>
-                <p className="text-sm font-semibold text-gray-800">— James L., Manchester</p>
-              </div>
-              <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
-                <p className="text-sm text-gray-700 italic mb-4">
-                  &quot;Clean, simple and so needed. I&apos;ll be using it for all new tenants.&quot;
-                </p>
-                <p className="text-sm font-semibold text-gray-800">— Priya D., London</p>
-              </div>
-            </div>
+        {/* LetSuite Checklist Section */}
+        <section className="py-16 px-6 bg-white border-t border-gray-100 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl font-bold mb-4">LetSuite Landlord Compliance Checklist</h2>
+            <p className="text-gray-700 mb-6">
+              A simple, printable checklist covering all your legal responsibilities as a UK landlord.
+              Download it free — no email required.
+            </p>
+            <a
+              href="/LetSuite%20Landlord%20Compliance%20Checklist.pdf"
+              download
+              className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+            >
+              Download the Checklist
+            </a>
           </div>
         </section>
 
