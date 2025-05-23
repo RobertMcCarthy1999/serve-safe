@@ -1,11 +1,12 @@
-import NavBar from '@/app/components/NavBar'
-import Footer from '@/app/components/Footer'
-
+import StartSafeOnboardingModal from '@/app/components/StartSafeOnboardingModal';
+import NavBar from '@/app/components/NavBar';
+import Footer from '@/app/components/Footer';
 
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       <NavBar />
+      <StartSafeOnboardingModal />
 
       <main className="flex-grow bg-white text-gray-900">
         {/* Hero Section */}
