@@ -142,7 +142,7 @@ export default function HomePage() {
         <section className="py-16 px-6 bg-white border-t border-gray-100 text-center">
           <div className="max-w-xl mx-auto">
             <h2 className="text-2xl font-bold mb-4">Join the Waitlist</h2>
-            <p className="text-gray-700 mb-6">Be the first to know when StartSafe launches full access and premium tools.</p>
+            <p className="text-gray-700 mb-6">Be the first to know when LetSuite launches full access and other premium tools.</p>
             <form className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <input
                 type="email"
