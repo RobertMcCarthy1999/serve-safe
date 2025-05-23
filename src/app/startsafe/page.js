@@ -1,6 +1,7 @@
 import NavBar from '@/app/components/NavBar';
 import Footer from '@/app/components/Footer';
 import { Upload, UserPlus, CheckCircle } from "lucide-react";
+import Image from 'next/image'; // <-- added import
 
 export default function HomePage() {
   return (
@@ -44,7 +45,7 @@ export default function HomePage() {
               <div className="bg-white shadow rounded-xl p-5 border border-gray-200">
                 <h3 className="text-lg font-semibold mb-2">🧾 Compliance Tracker</h3>
                 <p className="text-sm text-gray-700">
-                  Peace of mind that you’re meeting legal obligations as a UK landlord.
+                  Peace of mind that you&apos;re meeting legal obligations as a UK landlord.
                 </p>
               </div>
             </div>
@@ -74,7 +75,7 @@ export default function HomePage() {
                   <h3 className="text-lg font-semibold">Add Tenant Details</h3>
                 </div>
                 <p className="text-sm text-gray-700">
-                  Just an email address — no long forms. We’ll handle the delivery log.
+                  Just an email address — no long forms. We&apos;ll handle the delivery log.
                 </p>
               </div>
               <div className="bg-white shadow rounded-xl p-6 border border-gray-200">
@@ -113,19 +114,19 @@ export default function HomePage() {
             <div className="grid md:grid-cols-3 gap-6 text-left">
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
                 <p className="text-sm text-gray-700 italic mb-4">
-                  "StartSafe saved me hours of admin and gave me peace of mind I was compliant."
+                  &quot;StartSafe saved me hours of admin and gave me peace of mind I was compliant.&quot;
                 </p>
                 <p className="text-sm font-semibold text-gray-800">— Sarah B., Bristol</p>
               </div>
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
                 <p className="text-sm text-gray-700 italic mb-4">
-                  "I love that I can prove everything was delivered. No more disputes."
+                  &quot;I love that I can prove everything was delivered. No more disputes.&quot;
                 </p>
                 <p className="text-sm font-semibold text-gray-800">— James L., Manchester</p>
               </div>
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
                 <p className="text-sm text-gray-700 italic mb-4">
-                  "Clean, simple and so needed. I’ll be using it for all new tenants."
+                  &quot;Clean, simple and so needed. I&apos;ll be using it for all new tenants.&quot;
                 </p>
                 <p className="text-sm font-semibold text-gray-800">— Priya D., London</p>
               </div>
@@ -137,7 +138,7 @@ export default function HomePage() {
         <section className="py-16 px-6 bg-gray-50 border-t border-gray-100 text-center">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-2xl font-bold mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-gray-700 mb-6">StartSafe is <strong>free while in beta</strong>. You'll always get notified before any pricing changes.</p>
+            <p className="text-gray-700 mb-6">StartSafe is <strong>free while in beta</strong>. You&apos;ll always get notified before any pricing changes.</p>
             <div className="inline-block bg-white border border-gray-200 p-6 rounded-xl shadow">
               <p className="text-lg font-semibold">Beta Access</p>
               <p className="text-4xl font-bold text-blue-600 mb-2">£0</p>
