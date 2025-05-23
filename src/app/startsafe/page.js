@@ -27,19 +27,25 @@ export default function HomePage() {
         {/* Why Use StartSafe */}
         <section className="py-16 px-6 bg-gray-50">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl font-bold mb-8">Why Use StartSafe?</h2>
-            <div className="grid md:grid-cols-3 gap-8 text-left">
-              <div>
+            <h2 className="text-2xl font-bold mb-10">Why Use StartSafe?</h2>
+            <div className="grid md:grid-cols-3 gap-6 text-left">
+              <div className="bg-white shadow rounded-xl p-5 border border-gray-200">
                 <h3 className="text-lg font-semibold mb-2">📄 Legal Document Upload</h3>
-                <p>Send EPCs, tenancy agreements, gas safety and more — in a few clicks.</p>
+                <p className="text-sm text-gray-700">
+                  Send EPCs, tenancy agreements, gas safety and more — in a few clicks.
+                </p>
               </div>
-              <div>
+              <div className="bg-white shadow rounded-xl p-5 border border-gray-200">
                 <h3 className="text-lg font-semibold mb-2">📬 Dual Email Delivery</h3>
-                <p>Automatically emails all documents to you and your tenant with proof.</p>
+                <p className="text-sm text-gray-700">
+                  Automatically emails all documents to you and your tenant with proof.
+                </p>
               </div>
-              <div>
+              <div className="bg-white shadow rounded-xl p-5 border border-gray-200">
                 <h3 className="text-lg font-semibold mb-2">🧾 Compliance Tracker</h3>
-                <p>Peace of mind that you’re meeting legal obligations as a UK landlord.</p>
+                <p className="text-sm text-gray-700">
+                  Peace of mind that you’re meeting legal obligations as a UK landlord.
+                </p>
               </div>
             </div>
           </div>
@@ -90,13 +96,15 @@ export default function HomePage() {
         <section className="py-16 px-6 bg-gray-50 border-t border-gray-100">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl font-bold mb-6">Why Landlords Trust StartSafe</h2>
-            <ul className="space-y-4 text-left text-gray-700">
-              <li>✅ Built for UK legal compliance</li>
-              <li>✅ Send documents in under 5 minutes</li>
-              <li>✅ Get automatic proof-of-delivery logs</li>
-              <li>✅ No logins or portals for your tenants</li>
-              <li>✅ Clear audit trail for every tenancy</li>
-            </ul>
+            <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+              <ul className="space-y-4 text-left text-gray-700">
+                <li>✅ Built for UK legal compliance</li>
+                <li>✅ Send documents in under 5 minutes</li>
+                <li>✅ Get automatic proof-of-delivery logs</li>
+                <li>✅ No logins or portals for your tenants</li>
+                <li>✅ Clear audit trail for every tenancy</li>
+              </ul>
+            </div>
           </div>
         </section>
 
