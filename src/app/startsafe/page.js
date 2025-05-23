@@ -159,16 +159,17 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 px-6 text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to send your documents?</h2>
-          <a
-            href="/startsafe/send"
-            className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
-          >
-            Upload Now
-          </a>
-        </section>
+       {/* CTA Section */}
+<section className="py-16 px-6 bg-gray-50 border-t border-gray-100 text-center">
+  <h2 className="text-2xl font-bold mb-4">Ready to send your documents?</h2>
+  <a
+    href="/startsafe/send"
+    className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+  >
+    Upload Now
+  </a>
+</section>
+
       </main>
 
       <Footer />
