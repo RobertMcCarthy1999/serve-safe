@@ -1,8 +1,8 @@
 import { Montserrat } from 'next/font/google';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import ToasterClient from './components/ToasterClient'; // ✅ use this, not Toaster
-import { Analytics } from "@vercel/analytics/next"
+import ToasterClient from './components/ToasterClient';
+import { Analytics } from '@vercel/analytics/react';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -29,7 +29,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={montserrat.className}>
         {children}
-        <ToasterClient /> {/* ✅ this is safe here */}
+        <ToasterClient />
+        <Analytics />
       </body>
     </html>
   );
