@@ -2,6 +2,7 @@ import { Montserrat } from 'next/font/google';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import ToasterClient from './components/ToasterClient'; // ✅ use this, not Toaster
+import { Analytics } from "@vercel/analytics/next"
 
 const montserrat = Montserrat({
   subsets: ['latin'],
