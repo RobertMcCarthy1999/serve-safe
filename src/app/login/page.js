@@ -11,6 +11,7 @@ export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  // Grab ?redirectedFrom=... from the URL, or fallback to "/"
   const redirectedFrom = searchParams.get('redirectedFrom') || '/';
 
   const handleLogin = async (e) => {
@@ -19,7 +20,8 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback?redirectedFrom=${redirectedFrom}`,
+        // This will be included in the magic link
+        emailRedirectTo: `${window.location.origin}/auth/callback?redirectedFrom=${encodeURIComponent(redirectedFrom)}`,
       },
     });
 
@@ -32,19 +34,19 @@ export default function LoginPage() {
 
   const handleClickOutside = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
-      router.push('/'); // fallback
+      router.push(redirectedFrom); // Go back to where they came from
     }
   };
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [redirectedFrom]);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
       <iframe
-        src="/"
+        src={redirectedFrom}
         className="absolute inset-0 w-full h-full pointer-events-none blur-sm scale-[1.01]"
       ></iframe>
 
@@ -54,7 +56,7 @@ export default function LoginPage() {
           className="relative bg-white bg-opacity-80 backdrop-blur-md shadow-2xl rounded-2xl p-8 w-full max-w-md border border-white/20"
         >
           <button
-            onClick={() => router.push('/')}
+            onClick={() => router.push(redirectedFrom)}
             className="absolute top-2 right-3 text-gray-600 hover:text-black text-xl font-bold"
             aria-label="Close login form"
           >

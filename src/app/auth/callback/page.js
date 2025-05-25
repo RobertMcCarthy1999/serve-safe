@@ -11,23 +11,31 @@ function CallbackHandler() {
 
   useEffect(() => {
     const handleLoginRedirect = async () => {
-      // 1. Sync session
-      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-      if (sessionError || !session) {
-        console.error('❌ Failed to get session:', sessionError);
-        return router.replace('/login?error=session');
-      }
+      try {
+        // Wait for session to be set in the client
+        let attempts = 0;
+        let session = null;
 
-      // 2. Ensure session is hydrated
-      const { data: { user }, error: userError } = await supabase.auth.getUser();
-      if (userError || !user) {
-        console.error('❌ Failed to get user:', userError);
-        return router.replace('/login?error=user');
-      }
+        while (attempts < 10 && !session) {
+          const { data } = await supabase.auth.getSession();
+          session = data.session;
+          if (!session) {
+            await new Promise((resolve) => setTimeout(resolve, 300)); // wait 300ms
+            attempts++;
+          }
+        }
 
-      // 3. Redirect
-      const redirectTo = searchParams.get('redirectedFrom') || '/';
-      router.replace(redirectTo);
+        if (!session) {
+          console.error('❌ Session not available after login.');
+          return router.replace('/login?error=session');
+        }
+
+        const redirectedFrom = searchParams.get('redirectedFrom') || '/';
+        router.replace(redirectedFrom);
+      } catch (err) {
+        console.error('❌ Callback error:', err);
+        router.replace('/login?error=session');
+      }
     };
 
     handleLoginRedirect();
