@@ -10,18 +10,30 @@ function CallbackHandler() {
   const supabase = createClientComponentClient();
 
   useEffect(() => {
-    const handleRedirect = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+    const handleLoginRedirect = async () => {
+      let attempts = 0;
+      let session = null;
+
+      // Retry until session loads (max 10 tries, with delay)
+      while (attempts < 10 && !session) {
+        const { data } = await supabase.auth.getSession();
+        session = data.session;
+        if (!session) {
+          await new Promise((res) => setTimeout(res, 300));
+          attempts++;
+        }
+      }
 
       if (!session) {
+        console.error('❌ No session after retries');
         return router.replace('/login?error=session');
       }
 
-      const redirectedFrom = searchParams.get('redirectedFrom') || '/';
-      router.replace(redirectedFrom);
+      const redirectTo = searchParams.get('redirectedFrom') || '/';
+      router.replace(redirectTo);
     };
 
-    handleRedirect();
+    handleLoginRedirect();
   }, [router, searchParams, supabase]);
 
   return <p className="text-center mt-10">Completing login...</p>;

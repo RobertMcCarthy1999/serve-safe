@@ -21,7 +21,8 @@ export default function LoginPage() {
       email,
       options: {
         // Ensure this points to the correct callback AND includes redirectedFrom
-        emailRedirectTo: `${location.origin}/auth/callback?redirectedFrom=${encodeURIComponent(redirectedFrom)}`
+        emailRedirectTo: `${window.location.origin}/auth/callback?redirectedFrom=${redirectedFrom}`,
+
       }
     });
 
