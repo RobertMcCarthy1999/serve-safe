@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
@@ -9,19 +10,22 @@ function CallbackHandler() {
   const supabase = createClientComponentClient();
 
   useEffect(() => {
-    const completeLogin = async () => {
-      await supabase.auth.getSession(); // establish cookie
-      const { data: { user } } = await supabase.auth.getUser();
-      const redirectedFrom = searchParams.get('redirectedFrom') || '/';
-      if (user) {
-        router.replace(redirectedFrom);
-      } else {
-        router.replace('/login');
+    const handleLoginRedirect = async () => {
+      // Force Supabase to load the session and persist it
+      const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+      const { data: userData, error: userError } = await supabase.auth.getUser();
+
+      if (sessionError || userError || !sessionData.session) {
+        console.error('❌ Failed to complete session setup:', sessionError || userError);
+        return router.replace('/login?error=session');
       }
+
+      const redirectTo = searchParams.get('redirectedFrom') || '/';
+      router.replace(redirectTo);
     };
 
-    completeLogin();
-  }, [supabase, router, searchParams]);
+    handleLoginRedirect();
+  }, [router, searchParams, supabase]);
 
   return <p className="text-center mt-10">Completing login...</p>;
 }
@@ -33,4 +37,3 @@ export default function AuthCallbackPage() {
     </Suspense>
   );
 }
-
