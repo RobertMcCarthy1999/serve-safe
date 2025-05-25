@@ -1,9 +1,10 @@
+// File: src/app/startsafe/send/page.js
 'use client';
 
-import Footer from '@/app/components/Footer';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import Footer from '@/app/components/Footer';
 
 const requiredDocs = [
   { id: 'howToRent', label: 'How to Rent Guide' },
@@ -12,7 +13,7 @@ const requiredDocs = [
   { id: 'eicr', label: 'Electrical Installation Condition Report (EICR)' },
   { id: 'prescribedInfo', label: 'Prescribed Information (Tenancy Deposit)' },
   { id: 'dpsCert', label: 'Deposit Protection Scheme Certificate' },
-  { id: 'tenancyAgreement', label: 'Tenancy Agreement' }
+  { id: 'tenancyAgreement', label: 'Tenancy Agreement' },
 ];
 
 export default function SendPage() {
@@ -23,9 +24,17 @@ export default function SendPage() {
   const [propertyAddress, setPropertyAddress] = useState('');
 
   const router = useRouter();
-  
+  const supabase = createClientComponentClient();
 
-  
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        router.replace('/login?redirectedFrom=/startsafe/send');
+      }
+    };
+    checkSession();
+  }, [supabase, router]);
 
   const handleFileChange = (id, file) => {
     setFiles((prev) => ({ ...prev, [id]: file }));
@@ -57,8 +66,6 @@ export default function SendPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      
-
       <main className="flex-grow">
         <div
           style={{
@@ -70,6 +77,7 @@ export default function SendPage() {
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
           }}
         >
+          {/* Just a visual header (not NavBar) */}
           <header
             style={{
               backgroundColor: '#0070f3',
@@ -85,7 +93,7 @@ export default function SendPage() {
               alt="StartSafe Logo"
               style={{
                 maxWidth: '400px',
-                height: 'autopx',
+                height: 'auto',
                 display: 'block',
                 margin: '0 auto 0.25rem',
               }}
