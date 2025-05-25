@@ -96,21 +96,41 @@ export default function Dashboard() {
             <ToolCard
               key={title}
               title={title}
-              status={title === 'StartSafe' ? 'Live' : title === 'LLM Bot Assistant' ? 'Later Stage' : 'Planned'}
-              action={title === 'StartSafe' ? 'Use Now' : 'Notify Me'}
+              status={
+                ['StartSafe', 'TenantScore'].includes(title)
+                  ? 'Live'
+                  : title === 'LLM Bot Assistant'
+                  ? 'Later Stage'
+                  : 'Planned'
+              }
+              action={['StartSafe', 'TenantScore'].includes(title) ? 'Use Now' : 'Notify Me'}
               color={
-                title === 'StartSafe' ? 'bg-green-500'
-                : title === 'ServeSafe' ? 'bg-blue-500'
-                : title === 'TenantScore' ? 'bg-yellow-500'
-                : title === 'KeyTrack' ? 'bg-indigo-500'
-                : title === 'DocVault' ? 'bg-purple-500'
-                : title === 'FixLog' ? 'bg-orange-500'
-                : title === 'InventoryPro' ? 'bg-rose-500'
-                : 'bg-gray-500'
+                title === 'StartSafe'
+                  ? 'bg-green-500'
+                  : title === 'ServeSafe'
+                  ? 'bg-blue-500'
+                  : title === 'TenantScore'
+                  ? 'bg-yellow-500'
+                  : title === 'KeyTrack'
+                  ? 'bg-indigo-500'
+                  : title === 'DocVault'
+                  ? 'bg-purple-500'
+                  : title === 'FixLog'
+                  ? 'bg-orange-500'
+                  : title === 'InventoryPro'
+                  ? 'bg-rose-500'
+                  : 'bg-gray-500'
               }
-              onClick={() =>
-                title === 'StartSafe' ? (window.location.href = '/startsafe') : setModalOpen(true)
-              }
+              onClick={() => {
+                if (title === 'StartSafe') {
+                  window.location.href = '/startsafe';
+                } else if (title === 'TenantScore') {
+                  window.location.href = '/tools/tenancy-health-check';
+                } else {
+                  setSelectedTool(title);
+                  setModalOpen(true);
+                }
+              }}
               description={description}
             />
           ))}
