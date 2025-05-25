@@ -11,7 +11,7 @@ export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Grab ?redirectedFrom=... from the URL, or fallback to "/"
+  // Grab where user was redirected from
   const redirectedFrom = searchParams.get('redirectedFrom') || '/';
 
   const handleLogin = async (e) => {
@@ -20,9 +20,9 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        // This will be included in the magic link
-        emailRedirectTo: `${window.location.origin}/auth/callback?redirectedFrom=${encodeURIComponent(redirectedFrom)}`,
-      },
+        // Ensure this points to the correct callback AND includes redirectedFrom
+        emailRedirectTo: `${location.origin}/auth/callback?redirectedFrom=${encodeURIComponent(redirectedFrom)}`
+      }
     });
 
     if (error) {
@@ -34,35 +34,33 @@ export default function LoginPage() {
 
   const handleClickOutside = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
-      router.push(redirectedFrom); // Go back to where they came from
+      router.push('/'); // fallback close
     }
   };
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [redirectedFrom]);
+  }, []);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
       <iframe
-        src={redirectedFrom}
+        src="/"
         className="absolute inset-0 w-full h-full pointer-events-none blur-sm scale-[1.01]"
-      ></iframe>
-
+      />
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <div
           ref={modalRef}
           className="relative bg-white bg-opacity-80 backdrop-blur-md shadow-2xl rounded-2xl p-8 w-full max-w-md border border-white/20"
         >
           <button
-            onClick={() => router.push(redirectedFrom)}
+            onClick={() => router.push('/')}
             className="absolute top-2 right-3 text-gray-600 hover:text-black text-xl font-bold"
-            aria-label="Close login form"
+            aria-label="Close"
           >
             &times;
           </button>
-
           <h2 className="text-2xl font-bold text-center mb-4 text-gray-800">
             Sign in to <span className="text-indigo-600">LetSuite</span>
           </h2>
