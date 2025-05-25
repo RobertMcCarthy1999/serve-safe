@@ -1,0 +1,503 @@
+[33mcommit d47ba373efad30f155eab423bbb371f60f02a61d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Sun May 25 11:20:14 2025 +0100
+
+    Implement Supabase auth protection and session support
+
+[33mcommit 5c4621b69fbc9c3783368f6a990f84c8af3c52ba[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Sat May 24 23:48:33 2025 +0100
+
+    Improve dashboard and login UX, add toast for expired links
+
+[33mcommit 24105f20f8a141b3c6f59a891a2355e9846ade01[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Sat May 24 11:31:33 2025 +0100
+
+    Add Vercel Analytics to layout
+
+[33mcommit f255c28aa96ad1825e76348a712ce7f2bdf84146[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Sat May 24 11:23:19 2025 +0100
+
+    Add Vercel Analytics
+
+[33mcommit 73593eac3b8e4690a829afa11d91ed755e36e728[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Sat May 24 00:45:23 2025 +0100
+
+    Add descriptions to LetSuite dashboard tool cards
+
+[33mcommit a66094bec528e29e4cdbcea06963911380d97bf6[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Sat May 24 00:41:54 2025 +0100
+
+    Update LetSuite dashboard with full tool list and statuses
+
+[33mcommit 519f4cd983c1a3c0fb54649b13db4a1c0550df96[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Sat May 24 00:27:08 2025 +0100
+
+    Update final CTA section to match background styling
+
+[33mcommit f77413efd5e5a9b37bccb012aabb6954c1b85abb[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Sat May 24 00:24:42 2025 +0100
+
+    Update waitlist copy to reflect LetSuite branding
+
+[33mcommit 4307298fdeb5b521fae48bc5c0d64b2919019f20[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Sat May 24 00:18:00 2025 +0100
+
+    Add LetSuite Landlord Compliance Checklist section to homepage
+
+[33mcommit 4a1b815b4ccfae647c43ba2a55f37b627610051f[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 23:17:42 2025 +0100
+
+    Fix ESLint errors and replace <img> with <Image />
+
+[33mcommit 954215b45f0ef9ede2830a381179729894bee8d5[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 23:11:21 2025 +0100
+
+    Add testimonials, pricing preview, and email waitlist to StartSafe landing page
+
+[33mcommit cb2c4c9d0265852b7e0f4a06e29877b9c8c69bdd[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 23:03:11 2025 +0100
+
+    Apply unified card layout to all StartSafe sections
+
+[33mcommit 16082fdfb8e932c55ef7e4501011f8f4c7a207e7[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 22:56:41 2025 +0100
+
+    Clean up StartSafe landing layout and icon steps
+
+[33mcommit c0cf475d86a3083168190f3320c7b2d31f053164[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 22:52:45 2025 +0100
+
+    Update StartSafe landing page with icon-enhanced feature steps
+
+[33mcommit 4e20433afedbf5d200b1f651690612ed82d6dc87[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 22:34:44 2025 +0100
+
+    Update StartSafe landing page with full content layout
+
+[33mcommit 1ae2a5a09c6fe3e130a3131dc14e256ba24c65b5[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 20:49:13 2025 +0100
+
+    Fix: escaped apostrophe to pass Next.js build
+
+[33mcommit 15d905e44f26f43da14c5a47b342589e615795e3[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 20:46:38 2025 +0100
+
+    Polished onboarding modal: layout, links, and UX improvements
+
+[33mcommit 89cf8c8131be5bc41482195661329601dcaa8764[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 19:53:20 2025 +0100
+
+    Fix modal with client directive for Next.js
+
+[33mcommit 4ce6e44b9eda2e1e1fa0957341e0e0b09de72814[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 00:57:05 2025 +0100
+
+    UI: reintroduce and align LetSuite logo to dashboard
+
+[33mcommit 5aae81bd2d1ad79b2a0037be9b24ab0445c46511[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 00:46:36 2025 +0100
+
+    UI: Align and style LetSuite logo with content layout
+
+[33mcommit b60b7e55e79273c6a41c88a611e234d7a382efc2[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 00:43:49 2025 +0100
+
+    UI: Add centered LetSuite logo to dashboard
+
+[33mcommit fde3e03cce56e4db3a5db826509fee089ac586ef[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 00:36:43 2025 +0100
+
+    Update: replaced LetSuite logo image
+
+[33mcommit 86fcde13e5a112897c073ba49f18c9314987e1f4[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 00:33:34 2025 +0100
+
+    Fix: correct LetSuite logo path and file name
+
+[33mcommit 6990ad0f7fd385ca2e67e7267a61c14728d3672f[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 00:30:51 2025 +0100
+
+    Add: LetSuite logo above welcome header
+
+[33mcommit e490963a0da650254e40193dcaefe3180a6f9a2c[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 00:10:32 2025 +0100
+
+    Update: personalized welcome message to Robert
+
+[33mcommit d1223aea020008ab6a7ec954da54dcc4b6baf15e[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Fri May 23 00:01:50 2025 +0100
+
+    Add: launch banner with dismiss button to dashboard
+
+[33mcommit 440ff4b7aa7dd7517933c649fc0a5a90883dfba3[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Thu May 22 23:22:46 2025 +0100
+
+    Redesign: updated dashboard with new layout and style
+
+[33mcommit 6f88c43c0a39f993925476aa484bce941d298fcf[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Thu May 22 23:15:51 2025 +0100
+
+    Fix: reverted button text to 'Back to Dashboard'
+
+[33mcommit 2eb30e97f8cd82237c831febc66eff9873d78e8b[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Thu May 22 23:11:07 2025 +0100
+
+    Fix: renamed dashboard link to 'Home Base'
+
+[33mcommit 8de5a2434aad6a98ed2f14f44c4cc8f01a3d5837[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Thu May 22 23:01:49 2025 +0100
+
+    Test: renamed dashboard button to 'Home Base'
+
+[33mcommit 0a6d16de03ac0b40df6aafba7044d75c6a91f7ae[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Thu May 22 23:00:08 2025 +0100
+
+    Test: renamed dashboard button to 'Home Base'
+
+[33mcommit 1bc3a2acd0c51b147685d3e61d0b842628967016[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Thu May 22 22:53:52 2025 +0100
+
+    Fix: clean up JSX comment syntax in NavBar
+
+[33mcommit c0f067a96a69433dcb1c1173db46c9aadc7dc57f[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Thu May 22 22:49:58 2025 +0100
+
+    UI: back to dashboard nav link
+
+[33mcommit 65f87f7177a2d0cda50e031bbe796f52b1aaf8cb[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Thu May 22 22:32:01 2025 +0100
+
+    Add Back to Dashboard link and visual tweaks
+
+[33mcommit c43844dbe75db8fa893c2a0769b975de97324541[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Thu May 22 22:16:46 2025 +0100
+
+    Update footer styling and ensure consistent display
+
+[33mcommit eca0eb05ddb4d0eb5bdf96c0ff03850cae86ad61[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 23:03:04 2025 +0100
+
+    Update footer styling to match site design
+
+[33mcommit 8738a387217172ba8f8ce88fd734e6d093421993[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 22:59:25 2025 +0100
+
+    Fix HomePage layout to ensure footer is visible
+
+[33mcommit 532a33694498d5f880c938546d289478b7bfdac8[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 22:38:10 2025 +0100
+
+    Fix FAQ layout structure and footer rendering
+
+[33mcommit 517b270743285e3b02d0e27e5b8427a4a79bd30a[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 22:29:02 2025 +0100
+
+    Test footer visibility with red background
+
+[33mcommit 2c0c1c11e2a496236f66a0d608426666f6f14091[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 22:19:04 2025 +0100
+
+    Fix footer not showing
+
+[33mcommit 778e6f77e936b9252dfbf2c389261ba80e49ae11[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 22:13:42 2025 +0100
+
+    Fix Footer.js casing for deployment
+
+[33mcommit 802a507aa3b8c9fd33c95716eb097a60a023e89c[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 21:56:45 2025 +0100
+
+    Re-add Footer component to all pages
+
+[33mcommit 7ab0039b6cf2121c03eb6165d45dd1d15c30e6aa[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 21:37:11 2025 +0100
+
+    Cleaned Footer references with sed
+
+[33mcommit 2c49d3057e8b1fc19951a2327244a95b4f0333f8[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 21:29:26 2025 +0100
+
+    Trigger redeploy to clear Vercel cache
+
+[33mcommit 1eb628f5dbe7a17f7dcb3067084c055a2a75fd76[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 21:28:17 2025 +0100
+
+    Trigger redeploy to clear Vercel cache
+
+[33mcommit cff8203f7eb8988ef050eaefdbe23945326c7b7f[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 21:14:31 2025 +0100
+
+    Fix: removed Footer import to resolve build error
+
+[33mcommit 53019f94faa4f440efed838dab1d7c993effc393[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 21:04:02 2025 +0100
+
+    Remove Footer component and all related imports
+
+[33mcommit 73e8cf39b02268d27e14eead87f111e3bdf903a2[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 20:53:01 2025 +0100
+
+    Fix Footer.js casing for Vercel (case-sensitive)
+
+[33mcommit 4151474ea2fc8263ec2e16c429e06b1e260110a5[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 20:36:13 2025 +0100
+
+    Fix NavBar and Footer import paths in all pages
+
+[33mcommit 0f013cc9c3667181d88f77f0ad3036d88536b482[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 20:31:27 2025 +0100
+
+    Fix case-sensitive Footer and NavBar import paths
+
+[33mcommit 6658b23bcec0b37e7ed5ecca764821a4a7f89e34[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 20:24:49 2025 +0100
+
+    Fix NavBar and Footer import path in upload/page.js
+
+[33mcommit 55327f11dac49ac2df3623bebace8521c3f3adec[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 20:22:23 2025 +0100
+
+    Fix Footer import case for deployment
+
+[33mcommit be5b2ea17f9e5a2e63cfdebbadceb77711d23d61[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 20:06:44 2025 +0100
+
+    Add Footer component to all pages
+
+[33mcommit f4e791567c2c6d252e4f3cd26c4aea3528fe5d4b[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 20:00:48 2025 +0100
+
+    Fix unescaped apostrophe in contact page
+
+[33mcommit fa5626d04f3e0422a96d7ab8e2dcf364498c440a[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 19:59:06 2025 +0100
+
+    Fix Footer import path in page.js
+
+[33mcommit 7899e6417932ca0061b9963eb3a409fb6496890f[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 19:57:16 2025 +0100
+
+    Fix Footer file casing to match import
+
+[33mcommit f544af1181198880092df61baba9c93b9e011205[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 19:53:26 2025 +0100
+
+    Fix Footer import paths
+
+[33mcommit df4d535df91f43025a7cca4105101bcb94edfb0d[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 00:06:43 2025 +0100
+
+    Add FAQ to NavBar
+
+[33mcommit 4b24c90afe2e924b64b27e14a363684c706a2aa9[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Tue May 20 00:02:54 2025 +0100
+
+    Fix JSX apostrophe in FAQ
+
+[33mcommit 14f0a7508d2e3299eb481db618553c86f3cbf322[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:59:19 2025 +0100
+
+    Add FAQ link to NavBar
+
+[33mcommit f82a04d4ef670730266ac00a2cb13830336ebc8b[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:55:27 2025 +0100
+
+    Replace logo image with cropped version
+
+[33mcommit 9d3b9b3e60993427302e20dbd33ef773d9377964[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:51:52 2025 +0100
+
+    Increase NavBar logo size
+
+[33mcommit 2752ab635c8690c539f2b601c1eb9f1d4db9c006[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:49:44 2025 +0100
+
+    Update NavBar logo to servesafe-logo-blue
+
+[33mcommit a5831b3aad72c49b88267fd5ccf8fe83fb046021[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:44:35 2025 +0100
+
+    Replace ServeSafe text in NavBar with logo
+
+[33mcommit 8372588d18ca8d436a493b7c4127e8f8c3ac6f27[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:40:40 2025 +0100
+
+    Add NavBar to pricing page
+
+[33mcommit 42257c3a5908f82de864f67cc33c51f570674648[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:37:02 2025 +0100
+
+    Fix: close JSX fragment in /send page
+
+[33mcommit 4d9dbad520047a34c2ac0dac5973f3f6148a3020[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:33:00 2025 +0100
+
+    Fix NavBar path and show it on /send
+
+[33mcommit fdae3a44008f90e64f788bb876d06d8746205a00[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:30:42 2025 +0100
+
+    Show NavBar on /send page
+
+[33mcommit 6215f03927bfcc791f75ac882b740323273bfd64[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:21:13 2025 +0100
+
+    Remove redundant pricing link from homepage
+
+[33mcommit 1896e14a31ea186c5ca1db1b02a35a06203f80c0[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:15:47 2025 +0100
+
+    Fix homepage layout and JSX structure
+
+[33mcommit 1251061ea0ca1813b3d0ae6a8e10ce4aad7e3f9f[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:13:03 2025 +0100
+
+    Render NavBar on homepage
+
+[33mcommit 10bc7ae1e58a4265383f585a2964f66f76a21869[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:07:05 2025 +0100
+
+    Add NavBar component and use across pages
+
+[33mcommit 945737965eff39a36ac15c81fb1f55d2fcf339d1[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 23:00:17 2025 +0100
+
+    Add pricing link to homepage
+
+[33mcommit 4c740aca09a5c7d7e9f533bda3bd7521b4da04c2[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 22:56:48 2025 +0100
+
+    Fix: mark pricing page as client component
+
+[33mcommit 5eef93af8a6a5ae45033a71cb55f8309a78b0389[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 22:55:10 2025 +0100
+
+    Fix pricing page JSX structure
+
+[33mcommit 4d6a80b333484314cf5774cd551def809cea7708[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 22:53:11 2025 +0100
+
+    Fix className syntax in pricing page
+
+[33mcommit 21b23060ab464e6bb5b9e8833c3898dd7c4e5977[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 22:50:09 2025 +0100
+
+    Add full pricing layout
+
+[33mcommit 994b8a296125bc0bb600debf525bd2a5643db24a[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 22:44:44 2025 +0100
+
+    Update homepage with new marketing layout
+
+[33mcommit 3995221691d2721f350feb8ebfb006d4d995b2f6[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 22:06:35 2025 +0100
+
+    Fix logo folder case for Vercel
+
+[33mcommit badd57ae1ba9095c60afcf937e62dd911fd8e12d[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 22:06:33 2025 +0100
+
+    Temp move to fix case
+
+[33mcommit 914975110565f490b4cde2d426032ea3396fa9fd[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 22:01:14 2025 +0100
+
+    Update logo and refine layout
+
+[33mcommit f96e28d9b7524e426ac14a0b8ee5ce6210a564ea[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 00:33:56 2025 +0100
+
+    Updated logo size
+
+[33mcommit 79b765ae7faa775eac09eae1cd86c79b2b3e27da[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Mon May 19 00:20:25 2025 +0100
+
+    Added ServeSafe logo
+
+[33mcommit e7085da932e78c2a95730eefc03e74ed6046f98e[m
+Author: Robert McCarthy <robbiemccarthy0@gmail.com>
+Date:   Sun May 18 23:15:48 2025 +0100
+
+    Fix: show emails and address in confirmation screen
