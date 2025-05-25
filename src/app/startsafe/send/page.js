@@ -77,31 +77,7 @@ export default function SendPage() {
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
           }}
         >
-          {/* Just a visual header (not NavBar) */}
-          <header
-            style={{
-              backgroundColor: '#0070f3',
-              color: 'white',
-              padding: '0.75rem 1rem 0.5rem',
-              borderRadius: '12px 12px 0 0',
-              textAlign: 'center',
-              marginBottom: '1rem',
-            }}
-          >
-            <img
-              src="/images/startsafe-logo-white.png"
-              alt="StartSafe Logo"
-              style={{
-                maxWidth: '400px',
-                height: 'auto',
-                display: 'block',
-                margin: '0 auto 0.25rem',
-              }}
-            />
-            <p style={{ margin: 0, fontSize: '0.85rem', lineHeight: '1.2' }}>
-              Send required tenant documents securely
-            </p>
-          </header>
+          
 
           {message === 'Emails sent successfully' ? (
             <div style={{ padding: '2rem', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
