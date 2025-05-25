@@ -1,10 +1,13 @@
-// File: src/app/layout.js
 import './globals.css';
-import { GeistSans } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/react';
+import { Montserrat } from 'next/font/google';
 import NavBar from './components/NavBar';
+import ToasterClient from './components/ToasterClient';
+import { Analytics } from '@vercel/analytics/react';
 
-const geistSans = GeistSans({ subsets: ['latin'] });
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+});
 
 export const metadata = {
   title: 'LetSuite',
@@ -14,9 +17,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={geistSans.className}>
-        <NavBar /> {/* Global LetSuite NavBar */}
+      <body className={montserrat.className}>
+        <NavBar />
         {children}
+        <ToasterClient />
         <Analytics />
       </body>
     </html>
