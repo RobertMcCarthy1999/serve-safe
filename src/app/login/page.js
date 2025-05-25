@@ -12,7 +12,18 @@ export default function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const { error } = await supabase.auth.signInWithOtp({ email });
+
+    // ✅ Grab ?redirectedFrom=... from the URL
+    const searchParams = new URLSearchParams(window.location.search);
+    const redirectedFrom = searchParams.get("redirectedFrom");
+
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth/callback?redirectedFrom=${redirectedFrom || '/'}`
+      }
+    });
+
     if (error) {
       setMessage("Something went wrong. Try again.");
     } else {
