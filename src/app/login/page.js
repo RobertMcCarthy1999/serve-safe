@@ -43,10 +43,9 @@ export default function LoginPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <iframe
-        src="/"
-        className="absolute inset-0 w-full h-full pointer-events-none blur-sm scale-[1.01]"
-      ></iframe>
+
+      <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-100 to-white" />
+
 
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <div
