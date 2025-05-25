@@ -4,6 +4,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { useSession } from '@supabase/auth-helpers-react';
 import Footer from '@/app/components/Footer';
 
 const requiredDocs = [
@@ -24,17 +25,14 @@ export default function SendPage() {
   const [propertyAddress, setPropertyAddress] = useState('');
 
   const router = useRouter();
-  const supabase = createClientComponentClient();
+const session = useSession();
 
-  useEffect(() => {
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        router.replace('/login?redirectedFrom=/startsafe/send');
-      }
-    };
-    checkSession();
-  }, [supabase, router]);
+useEffect(() => {
+  if (session === null) {
+    router.replace('/login?redirectedFrom=/startsafe/send');
+  }
+}, [session]);
+
 
   const handleFileChange = (id, file) => {
     setFiles((prev) => ({ ...prev, [id]: file }));
