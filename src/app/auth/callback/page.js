@@ -10,35 +10,18 @@ function CallbackHandler() {
   const supabase = createClientComponentClient();
 
   useEffect(() => {
-    const handleLoginRedirect = async () => {
-      try {
-        // Wait for session to be set in the client
-        let attempts = 0;
-        let session = null;
+    const handleRedirect = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
 
-        while (attempts < 10 && !session) {
-          const { data } = await supabase.auth.getSession();
-          session = data.session;
-          if (!session) {
-            await new Promise((resolve) => setTimeout(resolve, 300)); // wait 300ms
-            attempts++;
-          }
-        }
-
-        if (!session) {
-          console.error('❌ Session not available after login.');
-          return router.replace('/login?error=session');
-        }
-
-        const redirectedFrom = searchParams.get('redirectedFrom') || '/';
-        router.replace(redirectedFrom);
-      } catch (err) {
-        console.error('❌ Callback error:', err);
-        router.replace('/login?error=session');
+      if (!session) {
+        return router.replace('/login?error=session');
       }
+
+      const redirectedFrom = searchParams.get('redirectedFrom') || '/';
+      router.replace(redirectedFrom);
     };
 
-    handleLoginRedirect();
+    handleRedirect();
   }, [router, searchParams, supabase]);
 
   return <p className="text-center mt-10">Completing login...</p>;
