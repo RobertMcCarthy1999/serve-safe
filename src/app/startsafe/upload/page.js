@@ -1,7 +1,8 @@
 'use client';
-import NavBar from '@/app/components/NavBar'
-import Footer from '@/app/components/Footer'
 import { useState } from 'react';
+import Image from 'next/image'; // ✅ Import Next.js Image
+import NavBar from '@/app/components/NavBar';
+import Footer from '@/app/components/Footer';
 
 export default function UploadPage() {
   const [file, setFile] = useState(null);
@@ -49,11 +50,15 @@ export default function UploadPage() {
           <div className="mt-6 text-center">
             <h3 className="text-lg font-semibold mb-2">Uploaded File Preview:</h3>
             {file?.type.startsWith('image/') ? (
-              <img
-                src={fileUrl}
-                alt="Uploaded File"
-                className="max-w-xs mx-auto rounded shadow"
-              />
+              <div className="mx-auto max-w-xs">
+                <Image
+                  src={fileUrl}
+                  alt="Uploaded File"
+                  width={300}
+                  height={200}
+                  className="rounded shadow mx-auto"
+                />
+              </div>
             ) : (
               <a
                 href={fileUrl}

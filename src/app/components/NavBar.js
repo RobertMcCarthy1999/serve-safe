@@ -1,6 +1,8 @@
 'use client';
+
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -9,10 +11,12 @@ export default function NavBar() {
     <nav className="bg-white shadow sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
         <Link href="/startsafe" className="flex items-center space-x-2">
-          <img
+          <Image
             src="/images/startsafe-logo-blue.png"
             alt="StartSafe Logo"
-            className="h-12 object-contain"
+            width={120}
+            height={48}
+            className="object-contain"
           />
         </Link>
 
@@ -42,13 +46,9 @@ export default function NavBar() {
           <Link href="/pricing" className="block text-gray-700 hover:text-blue-600">Pricing</Link>
           <Link href="/faq" className="block text-gray-700 hover:text-blue-600">FAQ</Link>
           <Link href="/contact" className="block text-gray-700 hover:text-blue-600">Contact</Link>
-          <Link href="/" className="block text-blue-600 hover:underline">← Back to Dashboard</Link> 
+          <Link href="/" className="block text-blue-600 hover:underline">← Back to Dashboard</Link>
         </div>
       )}
     </nav>
   );
 }
-
-
-
-

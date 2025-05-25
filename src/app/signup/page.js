@@ -1,32 +1,27 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 
-export default function LoginPage() {
+export default function SignUpPage() {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const modalRef = useRef(null);
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const redirectedFrom = searchParams.get('redirectedFrom') || '/';
-
-  const handleLogin = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-
-    const { error } = await supabase.auth.signInWithOtp({
+    const { data, error } = await supabase.auth.signUp({
       email,
-      options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback?redirectedFrom=${redirectedFrom}`,
-      },
+      password,
     });
 
     if (error) {
-      setMessage('Something went wrong. Try again.');
+      setMessage(error.message);
     } else {
-      setMessage('Check your email for the magic link.');
+      setMessage('Signup successful. Please check your email to confirm your account.');
     }
   };
 
@@ -39,7 +34,7 @@ export default function LoginPage() {
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [handleClickOutside]);
+  }, []);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -56,16 +51,16 @@ export default function LoginPage() {
           <button
             onClick={() => router.push('/')}
             className="absolute top-2 right-3 text-gray-600 hover:text-black text-xl font-bold"
-            aria-label="Close login form"
+            aria-label="Close signup form"
           >
             &times;
           </button>
 
           <h2 className="text-2xl font-bold text-center mb-4 text-gray-800">
-            Sign in to <span className="text-indigo-600">LetSuite</span>
+            Create your <span className="text-indigo-600">LetSuite</span> account
           </h2>
 
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleSignUp} className="space-y-4">
             <label className="block text-sm font-medium text-gray-700">
               Email address
               <input
@@ -73,26 +68,36 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="you@example.com"
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm"
               />
             </label>
+
+            <label className="block text-sm font-medium text-gray-700">
+              Password
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength={6}
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm"
+              />
+            </label>
+
             <button
               type="submit"
               className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition font-medium"
             >
-              Send Magic Link
+              Sign Up
             </button>
           </form>
 
-          {message && (
-            <p className="mt-4 text-center text-sm text-gray-600">{message}</p>
-          )}
+          {message && <p className="mt-4 text-center text-sm text-gray-600">{message}</p>}
 
-          <p className="mt-6 text-center text-sm text-gray-600">
-            Don&apos;t have an account?{' '}
-            <a href="/signup" className="text-blue-600 hover:underline">
-              Sign up
+          <p className="mt-4 text-center text-sm text-gray-600">
+            Already have an account?{' '}
+            <a href="/login" className="text-indigo-600 font-medium hover:underline">
+              Log in
             </a>
           </p>
         </div>

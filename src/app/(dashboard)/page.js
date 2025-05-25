@@ -1,29 +1,30 @@
-"use client";
+'use client';
 
-import { useEffect, useState, useRef } from "react";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
-import { supabase } from "@/lib/supabaseClient";
-import NotifyModal from "@/app/components/NotifyModal";
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
+import { supabase } from '@/lib/supabaseClient';
+import NotifyModal from '@/app/components/NotifyModal';
+import Image from 'next/image';
 
 export default function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedTool, setSelectedTool] = useState("");
+  const [selectedTool, setSelectedTool] = useState('');
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const router = useRouter();
 
-  // Check for expired or invalid login links
   useEffect(() => {
     const hash = window.location.hash;
-    if (hash.includes("error=access_denied") || hash.includes("error_code=otp_expired")) {
-      toast.error("Login link has expired or already been used.");
-      router.replace("/");
+    if (hash.includes('error=access_denied') || hash.includes('error_code=otp_expired')) {
+      toast.error('Login link has expired or already been used.');
+      router.replace('/');
     }
   }, [router]);
 
   useEffect(() => {
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
+    const loadUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
         setLoading(false);
         return;
@@ -31,25 +32,27 @@ export default function Dashboard() {
       const { data: { user } } = await supabase.auth.getUser();
       setUser(user);
       setLoading(false);
-    });
+    };
+
+    loadUser();
   }, [router]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    router.push("/");
+    router.push('/');
   };
 
   if (loading) return <p className="text-center mt-20">Loading...</p>;
 
   const toolDescriptions = {
-    StartSafe: "Upload and deliver all 7 legally required tenancy start documents.",
-    ServeSafe: "Send legal notices like Section 21, Section 8 with proof.",
-    TenantScore: "Collect feedback and scores to build tenant references.",
-    KeyTrack: "Track key handovers and returns with timestamped proof.",
-    DocVault: "Store and share landlord documents — searchable and safe.",
-    FixLog: "Let tenants report repairs. You get notified + it gets logged.",
-    InventoryPro: "Create check-in/out inventories with condition photos.",
-    "LLM Bot Assistant": "AI assistant to answer legal landlord questions."
+    StartSafe: 'Upload and deliver all 7 legally required tenancy start documents.',
+    ServeSafe: 'Send legal notices like Section 21, Section 8 with proof.',
+    TenantScore: 'Collect feedback and scores to build tenant references.',
+    KeyTrack: 'Track key handovers and returns with timestamped proof.',
+    DocVault: 'Store and share landlord documents — searchable and safe.',
+    FixLog: 'Let tenants report repairs. You get notified + it gets logged.',
+    InventoryPro: 'Create check-in/out inventories with condition photos.',
+    'LLM Bot Assistant': 'AI assistant to answer legal landlord questions.',
   };
 
   return (
@@ -58,7 +61,13 @@ export default function Dashboard() {
 
       <div className="max-w-6xl mx-auto mb-6">
         <div className="flex justify-between items-center bg-white rounded-2xl shadow p-6">
-          <img src="/images/letsuite-logo.png" alt="LetSuite logo" className="h-16 object-contain" />
+          <Image
+            src="/images/letsuite-logo.png"
+            alt="LetSuite logo"
+            width={160}
+            height={64}
+            className="object-contain"
+          />
           {user ? (
             <button
               onClick={handleLogout}
@@ -87,27 +96,20 @@ export default function Dashboard() {
             <ToolCard
               key={title}
               title={title}
-              status={title === "StartSafe" ? "Live" : title === "LLM Bot Assistant" ? "Later Stage" : "Planned"}
-              action={title === "StartSafe" ? "Use Now" : "Notify Me"}
+              status={title === 'StartSafe' ? 'Live' : title === 'LLM Bot Assistant' ? 'Later Stage' : 'Planned'}
+              action={title === 'StartSafe' ? 'Use Now' : 'Notify Me'}
               color={
-                title === "StartSafe"
-                  ? "bg-green-500"
-                  : title === "ServeSafe"
-                  ? "bg-blue-500"
-                  : title === "TenantScore"
-                  ? "bg-yellow-500"
-                  : title === "KeyTrack"
-                  ? "bg-indigo-500"
-                  : title === "DocVault"
-                  ? "bg-purple-500"
-                  : title === "FixLog"
-                  ? "bg-orange-500"
-                  : title === "InventoryPro"
-                  ? "bg-rose-500"
-                  : "bg-gray-500"
+                title === 'StartSafe' ? 'bg-green-500'
+                : title === 'ServeSafe' ? 'bg-blue-500'
+                : title === 'TenantScore' ? 'bg-yellow-500'
+                : title === 'KeyTrack' ? 'bg-indigo-500'
+                : title === 'DocVault' ? 'bg-purple-500'
+                : title === 'FixLog' ? 'bg-orange-500'
+                : title === 'InventoryPro' ? 'bg-rose-500'
+                : 'bg-gray-500'
               }
               onClick={() =>
-                title === "StartSafe" ? (window.location.href = "/startsafe") : setModalOpen(true)
+                title === 'StartSafe' ? (window.location.href = '/startsafe') : setModalOpen(true)
               }
               description={description}
             />
