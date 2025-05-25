@@ -4,10 +4,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import ToasterClient from './components/ToasterClient';
 import NavBar from './components/NavBar';
-
-import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
-import { SessionContextProvider } from '@supabase/auth-helpers-react';
-import { useState } from 'react';
+import SupabaseProvider from './components/SupabaseProvider'; // ✅ session wrapper
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -30,19 +27,16 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const [supabaseClient] = useState(() => createBrowserSupabaseClient());
-
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <SessionContextProvider supabaseClient={supabaseClient}>
+        <SupabaseProvider>
           <NavBar />
           {children}
           <ToasterClient />
           <Analytics />
-        </SessionContextProvider>
+        </SupabaseProvider>
       </body>
     </html>
   );
 }
-
