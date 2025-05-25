@@ -2,6 +2,8 @@ import './globals.css';
 import { Montserrat } from 'next/font/google';
 import ToasterClient from './components/ToasterClient';
 import { Analytics } from '@vercel/analytics/react';
+import NavBar from './components/NavBar';
+
 
 const montserrat = Montserrat({
   subsets: ['latin'],
