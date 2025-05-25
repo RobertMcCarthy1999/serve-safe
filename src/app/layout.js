@@ -1,8 +1,8 @@
-// src/app/layout.js
+// File: src/app/layout.js
+
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import ToasterClient from './components/ToasterClient';
-import NavBar from './components/NavBar';
 import { Montserrat } from 'next/font/google';
 import { Geist, Geist_Mono } from 'next/font/google';
 
@@ -30,7 +30,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <NavBar /> {/* shown by default */}
         {children}
         <ToasterClient />
         <Analytics />

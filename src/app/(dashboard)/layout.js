@@ -1,6 +1,8 @@
+// File: src/app/(dashboard)/layout.js
+
 export const metadata = {
-  title: 'LetSuite Dashboard',
-  description: 'Manage your letting tools from one place',
+  title: 'Dashboard | LetSuite',
+  description: 'Your landlord toolkit dashboard',
 };
 
 export default function DashboardLayout({ children }) {
