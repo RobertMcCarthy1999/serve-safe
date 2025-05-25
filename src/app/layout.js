@@ -1,9 +1,8 @@
+// src/app/layout.js
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import ToasterClient from './components/ToasterClient';
 import NavBar from './components/NavBar';
-import { cookies } from 'next/headers';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Montserrat } from 'next/font/google';
 import { Geist, Geist_Mono } from 'next/font/google';
 
@@ -27,20 +26,11 @@ export const metadata = {
   description: 'A multi-tool platform for landlords',
 };
 
-export default async function RootLayout({ children }) {
-  const supabase = createServerComponentClient({ cookies: () => cookies() });
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  const path = typeof window !== 'undefined' ? window.location.pathname : '';
-  const isDashboard = path === '/';
-
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        {!isDashboard && <NavBar />} {/* ✅ Only show NavBar outside dashboard */}
+        <NavBar /> {/* shown by default */}
         {children}
         <ToasterClient />
         <Analytics />
@@ -48,4 +38,3 @@ export default async function RootLayout({ children }) {
     </html>
   );
 }
-
