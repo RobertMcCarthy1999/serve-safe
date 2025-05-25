@@ -1,5 +1,4 @@
 'use client';
-import { useState } from 'react';
 
 export default function StartSafeOnboardingModal({ isOpen, onClose }) {
   if (!isOpen) return null;
