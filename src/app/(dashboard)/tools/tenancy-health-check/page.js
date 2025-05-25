@@ -70,8 +70,42 @@ export default function TenantScoreLanding() {
         </ul>
       </section>
 
+      {/* PRICING */}
+      <section className="bg-white py-16 border-t text-center">
+        <h2 className="text-2xl font-bold mb-4">Simple, Transparent Pricing</h2>
+        <p className="text-gray-600 mb-8">TenantScore is <strong>free while in beta</strong>. You’ll always get notified before any pricing changes.</p>
+        <div className="inline-block border border-yellow-300 bg-yellow-50 rounded-xl p-6 shadow text-left">
+          <p className="text-2xl font-bold text-yellow-700 mb-2">Beta Access</p>
+          <p className="text-3xl font-bold mb-2">£0</p>
+          <ul className="text-sm text-gray-700 space-y-1">
+            <li>✔ Unlimited surveys</li>
+            <li>✔ Save or share your score</li>
+            <li>✔ No login required</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* WAITLIST */}
+      <section className="bg-yellow-100 py-14 px-6 text-center border-t">
+        <h2 className="text-2xl font-bold mb-4 text-yellow-700">Join the Waitlist</h2>
+        <p className="text-gray-700 mb-6">Get notified when full launch and score tracking features go live.</p>
+        <form className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="Your email"
+            className="px-4 py-2 border border-gray-300 rounded w-full"
+          />
+          <button
+            type="submit"
+            className="bg-yellow-500 text-white px-6 py-2 rounded hover:bg-yellow-600 transition"
+          >
+            Notify Me
+          </button>
+        </form>
+      </section>
+
       {/* FINAL CTA */}
-      <section className="text-center py-12 px-6 bg-yellow-100 border-t">
+      <section className="text-center py-12 px-6 bg-white border-t">
         <h3 className="text-xl font-bold mb-4 text-yellow-700">Ready to check your tenancy health?</h3>
         <Link href="/tools/tenancy-health-check/survey">
           <span className="inline-block px-6 py-3 bg-yellow-500 text-white rounded-lg font-semibold hover:bg-yellow-600 transition cursor-pointer">
