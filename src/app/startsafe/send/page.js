@@ -1,9 +1,9 @@
 'use client';
-import NavBar from '@/app/components/NavBar';
+
 import Footer from '@/app/components/Footer';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+
 
 const requiredDocs = [
   { id: 'howToRent', label: 'How to Rent Guide' },
@@ -23,18 +23,9 @@ export default function SendPage() {
   const [propertyAddress, setPropertyAddress] = useState('');
 
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  
 
-  // ✅ Protect route: redirect to login if not logged in
-  useEffect(() => {
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        router.replace('/login?redirectedFrom=/startsafe/send');
-      }
-    };
-    checkSession();
-  }, [supabase, router]);
+  
 
   const handleFileChange = (id, file) => {
     setFiles((prev) => ({ ...prev, [id]: file }));
@@ -66,7 +57,7 @@ export default function SendPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <NavBar />
+      
 
       <main className="flex-grow">
         <div
