@@ -11,7 +11,9 @@ function CallbackHandler() {
 
   useEffect(() => {
     const handleAuth = async () => {
+      // 🔁 Force Supabase to sync session cookie
       await supabase.auth.getSession();
+      await supabase.auth.getUser(); // ✅ Critical: completes client-side session persistence
 
       const redirectedFrom = searchParams.get('redirectedFrom') || '/';
       router.replace(redirectedFrom);
