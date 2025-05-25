@@ -1,32 +1,32 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { supabase } from '@/lib/supabaseClient';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const modalRef = useRef(null);
   const router = useRouter();
   const searchParams = useSearchParams();
+  const supabase = createClientComponentClient();
 
-  const redirectedFrom = searchParams.get('redirectedFrom') || '/';
+  const redirectedFrom = searchParams.get('redirectedFrom') || '/dashboard';
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const { error } = await supabase.auth.signInWithOtp({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
-      options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback?redirectedFrom=${redirectedFrom}`,
-      },
+      password,
     });
 
     if (error) {
-      setMessage('Something went wrong. Try again.');
+      setMessage('Login failed. Check your email or password.');
     } else {
-      setMessage('Check your email for the magic link.');
+      router.push(redirectedFrom); // ✅ redirect to where user came from
     }
   };
 
@@ -39,7 +39,7 @@ export default function LoginPage() {
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [handleClickOutside]);
+  }, []);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -77,21 +77,37 @@ export default function LoginPage() {
                 className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               />
             </label>
+
+            <label className="block text-sm font-medium text-gray-700">
+              Password
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Your password"
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            </label>
+
             <button
               type="submit"
               className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition font-medium"
             >
-              Send Magic Link
+              Log In
             </button>
           </form>
 
           {message && (
-            <p className="mt-4 text-center text-sm text-gray-600">{message}</p>
+            <p className="mt-4 text-center text-sm text-red-600">{message}</p>
           )}
 
-          <p className="mt-6 text-center text-sm text-gray-600">
+          <p className="mt-4 text-center text-sm text-gray-600">
             Don&apos;t have an account?{' '}
-            <a href="/signup" className="text-blue-600 hover:underline">
+            <a
+              href="/signup"
+              className="text-indigo-600 hover:underline font-medium"
+            >
               Sign up
             </a>
           </p>

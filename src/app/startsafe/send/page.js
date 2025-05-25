@@ -30,12 +30,15 @@ useEffect(() => {
   const checkSession = async () => {
     const supabase = createClientComponentClient();
     const { data: { session } } = await supabase.auth.getSession();
+
     if (!session) {
-      router.replace('/login?redirectedFrom=/startsafe/send');
+      router.replace(`/login?redirectedFrom=${encodeURIComponent('/startsafe/send')}`);
     }
   };
+
   checkSession();
-}, []);
+}, [router]);
+
 
 
 

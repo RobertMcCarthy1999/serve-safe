@@ -2,39 +2,40 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabaseClient';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-export default function SignUpPage() {
+export default function SignupPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const modalRef = useRef(null);
   const router = useRouter();
+  const supabase = createClientComponentClient();
 
-  const handleSignUp = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    const { data, error } = await supabase.auth.signUp({
+
+    const { error } = await supabase.auth.signUp({
       email,
       password,
     });
 
     if (error) {
-      setMessage(error.message);
+      setMessage('Signup failed. Please try again.');
     } else {
-      setMessage('Signup successful. Please check your email to confirm your account.');
-    }
-  };
-
-  const handleClickOutside = (e) => {
-    if (modalRef.current && !modalRef.current.contains(e.target)) {
-      router.push('/');
+      setMessage('Signup successful! Check your email to confirm.');
     }
   };
 
   useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        router.push('/');
+      }
+    };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [router]);
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -60,7 +61,7 @@ export default function SignUpPage() {
             Create your <span className="text-indigo-600">LetSuite</span> account
           </h2>
 
-          <form onSubmit={handleSignUp} className="space-y-4">
+          <form onSubmit={handleSignup} className="space-y-4">
             <label className="block text-sm font-medium text-gray-700">
               Email address
               <input
@@ -71,7 +72,6 @@ export default function SignUpPage() {
                 className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm"
               />
             </label>
-
             <label className="block text-sm font-medium text-gray-700">
               Password
               <input
@@ -79,11 +79,9 @@ export default function SignUpPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                minLength={6}
                 className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm"
               />
             </label>
-
             <button
               type="submit"
               className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition font-medium"
@@ -92,14 +90,9 @@ export default function SignUpPage() {
             </button>
           </form>
 
-          {message && <p className="mt-4 text-center text-sm text-gray-600">{message}</p>}
-
-          <p className="mt-4 text-center text-sm text-gray-600">
-            Already have an account?{' '}
-            <a href="/login" className="text-indigo-600 font-medium hover:underline">
-              Log in
-            </a>
-          </p>
+          {message && (
+            <p className="mt-4 text-center text-sm text-gray-700">{message}</p>
+          )}
         </div>
       </div>
     </div>
