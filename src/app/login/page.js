@@ -1,95 +1,81 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isRegistering, setIsRegistering] = useState(false);
   const [message, setMessage] = useState('');
-  const modalRef = useRef(null);
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Grab where user was redirected from
   const redirectedFrom = searchParams.get('redirectedFrom') || '/';
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage('Processing...');
 
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        // Ensure this points to the correct callback AND includes redirectedFrom
-        emailRedirectTo: `${window.location.origin}/auth/callback?redirectedFrom=${redirectedFrom}`,
-
-      }
-    });
+    const { error } = isRegistering
+      ? await supabase.auth.signUp({ email, password })
+      : await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
-      setMessage('Something went wrong. Try again.');
+      setMessage(error.message);
     } else {
-      setMessage('Check your email for the magic link.');
+      setMessage('Success! Redirecting...');
+      router.replace(redirectedFrom);
     }
   };
-
-  const handleClickOutside = (e) => {
-    if (modalRef.current && !modalRef.current.contains(e.target)) {
-      router.push('/'); // fallback close
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      <iframe
-        src="/"
-        className="absolute inset-0 w-full h-full pointer-events-none blur-sm scale-[1.01]"
-      />
-      <div className="absolute inset-0 flex items-center justify-center z-10">
-        <div
-          ref={modalRef}
-          className="relative bg-white bg-opacity-80 backdrop-blur-md shadow-2xl rounded-2xl p-8 w-full max-w-md border border-white/20"
-        >
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+          {isRegistering ? 'Create Account' : 'Log in to LetSuite'}
+        </h2>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2"
+          />
+          <input
+            type="password"
+            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2"
+          />
           <button
-            onClick={() => router.push('/')}
-            className="absolute top-2 right-3 text-gray-600 hover:text-black text-xl font-bold"
-            aria-label="Close"
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 font-medium"
           >
-            &times;
+            {isRegistering ? 'Create Account' : 'Log In'}
           </button>
-          <h2 className="text-2xl font-bold text-center mb-4 text-gray-800">
-            Sign in to <span className="text-indigo-600">LetSuite</span>
-          </h2>
+        </form>
 
-          <form onSubmit={handleLogin} className="space-y-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Email address
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                placeholder="you@example.com"
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </label>
-            <button
-              type="submit"
-              className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition font-medium"
-            >
-              Send Magic Link
-            </button>
-          </form>
+        <p className="text-center text-sm text-gray-600 mt-4">
+          {isRegistering ? 'Already have an account?' : "Don't have an account?"}{' '}
+          <button
+            onClick={() => {
+              setIsRegistering(!isRegistering);
+              setMessage('');
+            }}
+            className="text-blue-600 hover:underline"
+          >
+            {isRegistering ? 'Log in' : 'Sign up'}
+          </button>
+        </p>
 
-          {message && (
-            <p className="mt-4 text-center text-sm text-gray-600">{message}</p>
-          )}
-        </div>
+        {message && <p className="mt-4 text-center text-sm text-red-500">{message}</p>}
       </div>
     </div>
   );
