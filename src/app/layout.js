@@ -1,6 +1,5 @@
 import './globals.css';
 import { Montserrat } from 'next/font/google';
-import NavBar from './components/NavBar';
 import ToasterClient from './components/ToasterClient';
 import { Analytics } from '@vercel/analytics/react';
 
