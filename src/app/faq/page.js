@@ -35,7 +35,7 @@ export default function FAQPage() {
             <div>
               <h2 className="text-xl font-semibold mb-2">✅ Is this legally compliant?</h2>
               <p>
-                Yes. ServeSafe is designed around the UK&apos;s legal requirements, especially under
+                Yes. StartSafe is designed around the UK&apos;s legal requirements, especially under
                 Section 213 of the Housing Act 2004. It helps you document and prove delivery of
                 important documents.
               </p>
@@ -44,7 +44,7 @@ export default function FAQPage() {
             <div>
               <h2 className="text-xl font-semibold mb-2">🔐 Do you store my files?</h2>
               <p>
-                No. For security and privacy, ServeSafe does not store any uploaded documents or
+                No. For security and privacy, StartSafe does not store any uploaded documents or
                 email content after delivery. All files are immediately sent and discarded.
               </p>
             </div>

@@ -52,7 +52,7 @@ These documents are provided in accordance with Section 213 of the Housing Act 2
 Please retain this email as proof of service.
 
 Best regards,  
-ServeSafe
+StartSafe
   `,
   attachments,
 };
