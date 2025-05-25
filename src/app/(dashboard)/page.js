@@ -106,9 +106,9 @@ export default function Dashboard() {
               action={['StartSafe', 'TenantScore'].includes(title) ? 'Use Now' : 'Notify Me'}
               color={
                 title === 'StartSafe'
-                  ? 'bg-blue-500'
+                  ? 'bg-blue-500'       // swapped from green
                   : title === 'ServeSafe'
-                  ? 'bg-green-500'
+                  ? 'bg-green-500'      // swapped from blue
                   : title === 'TenantScore'
                   ? 'bg-yellow-500'
                   : title === 'KeyTrack'
