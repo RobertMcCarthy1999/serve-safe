@@ -25,13 +25,18 @@ export default function SendPage() {
   const [propertyAddress, setPropertyAddress] = useState('');
 
   const router = useRouter();
-const session = useSession();
 
 useEffect(() => {
-  if (session === null) {
-    router.replace('/login?redirectedFrom=/startsafe/send');
-  }
-}, [session]);
+  const checkSession = async () => {
+    const supabase = createClientComponentClient();
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      router.replace('/login?redirectedFrom=/startsafe/send');
+    }
+  };
+  checkSession();
+}, []);
+
 
 
   const handleFileChange = (id, file) => {
