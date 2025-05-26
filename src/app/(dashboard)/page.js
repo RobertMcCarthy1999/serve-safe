@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import NotifyModal from '@/app/components/NotifyModal';
 import Image from 'next/image';
+import Link from 'next/link';
+
 
 export default function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -49,9 +51,10 @@ export default function Dashboard() {
             height={64}
             className="object-contain"
           />
-         <a href="/" className="bg-gray-100 text-gray-600 px-4 py-2 rounded hover:bg-gray-200">
+         <Link href="/" className="bg-gray-100 text-gray-600 px-4 py-2 rounded hover:bg-gray-200">
   Home
-</a>
+</Link>
+
 
         </div>
       </div>
