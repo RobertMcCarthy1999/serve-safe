@@ -56,16 +56,6 @@ export default function SendPage() {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
-        <div className="text-center pt-6">
-          <Image
-            src="/images/startsafe-logo-white.png"
-            alt="LetSuite Logo"
-            width={160}
-            height={64}
-            className="mx-auto"
-          />
-        </div>
-
         <div
           style={{
             maxWidth: 600,
@@ -76,6 +66,17 @@ export default function SendPage() {
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
           }}
         >
+          {/* ✅ Logo inside upload box */}
+          <div className="text-center mb-4">
+            <Image
+              src="/images/startsafe-logo.png" // Change path if your logo differs
+              alt="StartSafe Logo"
+              width={160}
+              height={64}
+              className="mx-auto"
+            />
+          </div>
+
           {message === 'Emails sent successfully' ? (
             <div style={{ padding: '2rem', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
               <h2 style={{ textAlign: 'center' }}>✅ Delivery Confirmation</h2>
