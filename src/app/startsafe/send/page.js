@@ -1,10 +1,7 @@
 'use client';
-
+import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-
-import Footer from '@/app/components/Footer';
 
 const requiredDocs = [
   { id: 'howToRent', label: 'How to Rent Guide' },
@@ -13,20 +10,18 @@ const requiredDocs = [
   { id: 'eicr', label: 'Electrical Installation Condition Report (EICR)' },
   { id: 'prescribedInfo', label: 'Prescribed Information (Tenancy Deposit)' },
   { id: 'dpsCert', label: 'Deposit Protection Scheme Certificate' },
-  { id: 'tenancyAgreement', label: 'Tenancy Agreement' },
+  { id: 'tenancyAgreement', label: 'Tenancy Agreement' }
 ];
 
 export default function SendPage() {
   const [files, setFiles] = useState({});
   const [landlordEmail, setLandlordEmail] = useState('');
   const [tenantEmail, setTenantEmail] = useState('');
-  const [message, setMessage] = useState('');
   const [propertyAddress, setPropertyAddress] = useState('');
-
-  const router = useRouter();
+  const [message, setMessage] = useState('');
 
   const handleFileChange = (id, file) => {
-    setFiles((prev) => ({ ...prev, [id]: file }));
+    setFiles(prev => ({ ...prev, [id]: file }));
   };
 
   const handleSubmit = async (e) => {
@@ -40,129 +35,119 @@ export default function SendPage() {
       if (files[id]) formData.append(id, files[id]);
     });
 
-    const res = await fetch('/api/send', { method: 'POST', body: formData });
+    const res = await fetch('/api/send', {
+      method: 'POST',
+      body: formData,
+    });
+
     const data = await res.json();
-    setMessage(data.message);
+    setMessage(data.message || 'Finished');
   };
 
   const handleReset = () => {
-    setMessage('');
     setFiles({});
     setLandlordEmail('');
     setTenantEmail('');
     setPropertyAddress('');
+    setMessage('');
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow">
-        <div
-          style={{
-            maxWidth: 600,
-            margin: 'auto',
-            backgroundColor: '#f9f9f9',
-            padding: '2rem',
-            borderRadius: '12px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-          }}
-        >
-          {/* ✅ Logo inside upload box */}
-          <div className="text-center mb-4">
-            <Image
-              src="/images/startsafe-logo-white.png" // Change path if your logo differs
-              alt="StartSafe Logo"
-              width={160}
-              height={64}
-              className="mx-auto"
-            />
-          </div>
+    <>
+      <NavBar />
 
-          {message === 'Emails sent successfully' ? (
-            <div style={{ padding: '2rem', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
-              <h2 style={{ textAlign: 'center' }}>✅ Delivery Confirmation</h2>
-              <p><strong>Date Sent:</strong> {new Date().toLocaleString()}</p>
-              <p><strong>Property Address:</strong> {propertyAddress}</p>
-              <p><strong>Tenant Email:</strong> {tenantEmail}</p>
-              <p><strong>Landlord Email:</strong> {landlordEmail}</p>
-              <p><strong>Documents Sent:</strong></p>
-              <ul style={{ textAlign: 'left' }}>
-                {Object.values(files).map((file, idx) => (
-                  <li key={idx}>{file.name}</li>
-                ))}
-              </ul>
-              <p style={{ fontSize: '0.85rem', color: '#444', marginTop: '1rem' }}>
-                These documents were sent in accordance with <strong>Section 213 of the Housing Act 2004</strong>.
-              </p>
-              <button
-                onClick={() => window.print()}
-                className="bg-gray-200 hover:bg-gray-300 font-semibold py-2 px-4 rounded mt-4"
-              >
-                📄 Print / Save as PDF
+      <main className="max-w-2xl mx-auto mt-10 p-6 bg-gray-50 rounded-lg shadow">
+        <h1 className="text-2xl font-bold text-center text-blue-700 mb-6">
+          Upload & Send Legal Documents
+        </h1>
+
+        {message === 'Emails sent successfully' ? (
+          <div className="bg-white p-6 rounded shadow text-sm">
+            <h2 className="text-xl font-semibold text-center mb-4">✅ Delivery Confirmation</h2>
+            <p><strong>Date:</strong> {new Date().toLocaleString()}</p>
+            <p><strong>Property:</strong> {propertyAddress}</p>
+            <p><strong>Tenant:</strong> {tenantEmail}</p>
+            <p><strong>Landlord:</strong> {landlordEmail}</p>
+
+            <p className="mt-4"><strong>Documents Sent:</strong></p>
+            <ul className="list-disc ml-6">
+              {Object.values(files).map((file, idx) => (
+                <li key={idx}>{file.name}</li>
+              ))}
+            </ul>
+
+            <p className="text-gray-600 mt-4">
+              Documents were sent in accordance with <strong>Section 213 of the Housing Act 2004</strong>.
+            </p>
+
+            <div className="mt-6 flex gap-4">
+              <button onClick={() => window.print()} className="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300">
+                📄 Print / Save
               </button>
-              <button
-                onClick={handleReset}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mt-4 ml-3"
-              >
+              <button onClick={handleReset} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                 Send Another
               </button>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit}>
-              <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>Upload required documents</h2>
-              {requiredDocs.map(({ id, label }) => (
-                <div key={id} style={{ marginBottom: '1.5rem' }}>
-                  <label className="font-bold block mb-2">{label}</label>
-                  <input
-                    type="file"
-                    required
-                    onChange={(e) => handleFileChange(id, e.target.files[0])}
-                    className="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-200 file:text-gray-700 hover:file:bg-gray-300"
-                  />
-                </div>
-              ))}
-              <div className="mb-6">
-                <label className="font-bold block mb-2">Property Address</label>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {requiredDocs.map(({ id, label }) => (
+              <div key={id}>
+                <label className="block font-medium mb-1">{label}</label>
                 <input
-                  type="text"
+                  type="file"
                   required
-                  value={propertyAddress}
-                  onChange={(e) => setPropertyAddress(e.target.value)}
-                  className="w-full p-2 rounded border border-gray-300"
+                  onChange={(e) => handleFileChange(id, e.target.files[0])}
+                  className="block w-full border rounded px-3 py-2"
                 />
               </div>
-              <div className="mb-6">
-                <label className="font-bold block mb-2">Landlord Email</label>
-                <input
-                  type="email"
-                  required
-                  value={landlordEmail}
-                  onChange={(e) => setLandlordEmail(e.target.value)}
-                  className="w-full p-2 rounded border border-gray-300"
-                />
-              </div>
-              <div className="mb-6">
-                <label className="font-bold block mb-2">Tenant Email</label>
-                <input
-                  type="email"
-                  required
-                  value={tenantEmail}
-                  onChange={(e) => setTenantEmail(e.target.value)}
-                  className="w-full p-2 rounded border border-gray-300"
-                />
-              </div>
-              <button
-                type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mt-4"
-              >
-                Send Documents
-              </button>
-              <p>{message}</p>
-            </form>
-          )}
-        </div>
+            ))}
+
+            <div>
+              <label className="block font-medium mb-1">Property Address</label>
+              <input
+                type="text"
+                value={propertyAddress}
+                onChange={(e) => setPropertyAddress(e.target.value)}
+                required
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
+
+            <div>
+              <label className="block font-medium mb-1">Landlord Email</label>
+              <input
+                type="email"
+                value={landlordEmail}
+                onChange={(e) => setLandlordEmail(e.target.value)}
+                required
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
+
+            <div>
+              <label className="block font-medium mb-1">Tenant Email</label>
+              <input
+                type="email"
+                value={tenantEmail}
+                onChange={(e) => setTenantEmail(e.target.value)}
+                required
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Send Documents
+            </button>
+            <p className="text-center text-sm">{message}</p>
+          </form>
+        )}
       </main>
 
       <Footer />
-    </div>
+    </>
   );
 }
