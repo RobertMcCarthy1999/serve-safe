@@ -1,9 +1,7 @@
-// File: src/app/(dashboard)/layout.js
-'use client';
+// File: src/app/(dashboard)/layout.js (no "use client" here!)
 
-import { Toaster } from 'react-hot-toast';
-import Footer from '@/app/components/Footer'; // you need to create this
-import './dashboard.css'; // Optional: add dashboard-specific styles
+import Footer from '@/app/components/Footer'; // this can be a client component
+import './dashboard.css';
 
 export const metadata = {
   title: 'Dashboard | LetSuite',
@@ -16,9 +14,8 @@ export default function DashboardLayout({ children }) {
       <body className="bg-gray-50 text-gray-900">
         <div className="min-h-screen flex flex-col">
           <main className="flex-grow">{children}</main>
-          <Footer /> {/* Footer w/ newsletter form */}
+          <Footer /> {/* Safe to import client component here */}
         </div>
-        <Toaster position="top-right" />
       </body>
     </html>
   );
