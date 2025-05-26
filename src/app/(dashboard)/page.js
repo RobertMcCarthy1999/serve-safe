@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import { useState } from 'react';
 import NotifyModal from '@/app/components/NotifyModal';
 import Image from 'next/image';
 
