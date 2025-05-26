@@ -1,8 +1,8 @@
-// File: src/app/startsafe/send/page.js
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 import Footer from '@/app/components/Footer';
 
@@ -24,11 +24,6 @@ export default function SendPage() {
   const [propertyAddress, setPropertyAddress] = useState('');
 
   const router = useRouter();
-
-
-
-
-
 
   const handleFileChange = (id, file) => {
     setFiles((prev) => ({ ...prev, [id]: file }));
@@ -61,6 +56,16 @@ export default function SendPage() {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
+        <div className="text-center pt-6">
+          <Image
+            src="/images/letsuite-logo.png"
+            alt="LetSuite Logo"
+            width={160}
+            height={64}
+            className="mx-auto"
+          />
+        </div>
+
         <div
           style={{
             maxWidth: 600,
@@ -71,8 +76,6 @@ export default function SendPage() {
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
           }}
         >
-          
-
           {message === 'Emails sent successfully' ? (
             <div style={{ padding: '2rem', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
               <h2 style={{ textAlign: 'center' }}>✅ Delivery Confirmation</h2>
