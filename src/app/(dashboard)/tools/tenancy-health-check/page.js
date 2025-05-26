@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Footer from '@/app/components/Footer';
 
 export default function TenantScoreLanding() {
   return (
@@ -83,24 +82,6 @@ export default function TenantScoreLanding() {
           </div>
         </section>
 
-        {/* WAITLIST */}
-        <section className="bg-yellow-100 py-14 px-6 text-center border-t">
-          <h2 className="text-2xl font-bold mb-4 text-yellow-700">Join the Launch List</h2>
-          <p className="text-gray-700 mb-6">Be first to access score history, trend tracking and custom alerts.</p>
-          <form className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="px-4 py-2 border border-gray-300 rounded w-full"
-            />
-            <button
-              type="submit"
-              className="bg-yellow-500 text-white px-6 py-2 rounded hover:bg-yellow-600 transition"
-            >
-              Join Waitlist
-            </button>
-          </form>
-        </section>
 
         {/* FINAL CTA */}
         <section className="text-center py-12 px-6 bg-white border-t">
@@ -113,7 +94,7 @@ export default function TenantScoreLanding() {
         </section>
       </main>
 
-      <Footer />
+      
     </div>
   );
 }
