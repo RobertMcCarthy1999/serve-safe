@@ -3,15 +3,15 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import { supabase } from '@/lib/supabaseClient';
+import { useState } from 'react';
 import NotifyModal from '@/app/components/NotifyModal';
 import Image from 'next/image';
 
 export default function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedTool, setSelectedTool] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
+ 
+
   const router = useRouter();
 
   useEffect(() => {
@@ -22,25 +22,7 @@ export default function Dashboard() {
     }
   }, [router]);
 
-  useEffect(() => {
-    const loadUser = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        setLoading(false);
-        return;
-      }
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-      setLoading(false);
-    };
-
-    loadUser();
-  }, [router]);
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push('/');
-  };
+ 
 
   if (loading) return <p className="text-center mt-20">Loading...</p>;
 
@@ -68,18 +50,10 @@ export default function Dashboard() {
             height={64}
             className="object-contain"
           />
-          {user ? (
-            <button
-              onClick={handleLogout}
-              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-            >
-              Sign Out
-            </button>
-          ) : (
-            <a href="/login" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-              Log In
-            </a>
-          )}
+         <a href="/" className="bg-gray-100 text-gray-600 px-4 py-2 rounded hover:bg-gray-200">
+  Home
+</a>
+
         </div>
       </div>
 
@@ -106,9 +80,9 @@ export default function Dashboard() {
               action={['StartSafe', 'TenantScore'].includes(title) ? 'Use Now' : 'Notify Me'}
               color={
                 title === 'StartSafe'
-                  ? 'bg-blue-500'       // swapped from green
+                  ? 'bg-blue-500'
                   : title === 'ServeSafe'
-                  ? 'bg-green-500'      // swapped from blue
+                  ? 'bg-green-500'
                   : title === 'TenantScore'
                   ? 'bg-yellow-500'
                   : title === 'KeyTrack'

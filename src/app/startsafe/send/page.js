@@ -3,8 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { useSession } from '@supabase/auth-helpers-react';
+
 import Footer from '@/app/components/Footer';
 
 const requiredDocs = [
@@ -26,18 +25,7 @@ export default function SendPage() {
 
   const router = useRouter();
 
-useEffect(() => {
-  const checkSession = async () => {
-    const supabase = createClientComponentClient();
-    const { data: { session } } = await supabase.auth.getSession();
 
-    if (!session) {
-      router.replace(`/login?redirectedFrom=${encodeURIComponent('/startsafe/send')}`);
-    }
-  };
-
-  checkSession();
-}, [router]);
 
 
 
