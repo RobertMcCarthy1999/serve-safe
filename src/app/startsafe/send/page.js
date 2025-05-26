@@ -69,7 +69,7 @@ export default function SendPage() {
           {/* ✅ Logo inside upload box */}
           <div className="text-center mb-4">
             <Image
-              src="/images/startsafe-logo.png" // Change path if your logo differs
+              src="/images/startsafe-logo-white.png" // Change path if your logo differs
               alt="StartSafe Logo"
               width={160}
               height={64}
