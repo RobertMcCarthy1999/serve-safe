@@ -1,11 +1,15 @@
-'use client';
+'use client'; // Marked as a client-side component (uses interactive UI elements)
 
+// Internal navigation using Next.js' Link (no full page reloads)
 import Link from 'next/link';
 
+// Main component for the TenantScore marketing/entry page
 export default function TenantScoreLanding() {
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
-      {/* HEADER */}
+      
+      {/* === HEADER === */}
+      {/* Brand logo and back-to-dashboard nav */}
       <header className="bg-white border-b shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/dashboard">
@@ -19,8 +23,11 @@ export default function TenantScoreLanding() {
         </div>
       </header>
 
+      {/* === MAIN === */}
       <main className="flex-grow">
-        {/* HERO */}
+
+        {/* === HERO SECTION === */}
+        {/* High-level product pitch and primary CTA */}
         <section className="text-center py-20 px-6 bg-yellow-100 border-b">
           <h1 className="text-4xl font-bold mb-4 text-yellow-700">TenantScore for Landlords</h1>
           <p className="text-lg max-w-2xl mx-auto mb-6">
@@ -33,7 +40,8 @@ export default function TenantScoreLanding() {
           </Link>
         </section>
 
-        {/* WHY USE */}
+        {/* === FEATURE HIGHLIGHTS === */}
+        {/* Benefits for landlords – improves trust and conversion */}
         <section className="py-14 px-6 max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-center mb-10">Why Use TenantScore?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
@@ -43,7 +51,8 @@ export default function TenantScoreLanding() {
           </div>
         </section>
 
-        {/* HOW IT WORKS */}
+        {/* === HOW IT WORKS === */}
+        {/* Step-by-step guide to reassure landlords about ease of use */}
         <section className="bg-yellow-50 py-14 px-6 border-t border-b">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl font-bold text-center mb-10">How TenantScore Works</h2>
@@ -55,7 +64,8 @@ export default function TenantScoreLanding() {
           </div>
         </section>
 
-        {/* TRUST */}
+        {/* === TRUST SIGNALS === */}
+        {/* Social proof / compliance alignment. Helps reduce user hesitation */}
         <section className="py-14 px-6 max-w-4xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-6">Why Landlords Use TenantScore</h2>
           <ul className="text-sm text-gray-700 space-y-3 text-left max-w-md mx-auto">
@@ -67,7 +77,8 @@ export default function TenantScoreLanding() {
           </ul>
         </section>
 
-        {/* PRICING */}
+        {/* === PRICING === */}
+        {/* Free beta access – increases adoption before monetisation */}
         <section className="bg-white py-16 border-t text-center">
           <h2 className="text-2xl font-bold mb-4">Simple, Transparent Pricing</h2>
           <p className="text-gray-600 mb-8">TenantScore is <strong>free while in beta</strong>. You’ll always get notified before any pricing changes.</p>
@@ -82,8 +93,8 @@ export default function TenantScoreLanding() {
           </div>
         </section>
 
-
-        {/* FINAL CTA */}
+        {/* === FINAL CTA === */}
+        {/* Strong close with final push to start survey */}
         <section className="text-center py-12 px-6 bg-white border-t">
           <h3 className="text-xl font-bold mb-4 text-yellow-700">Improve the quality of your tenancies</h3>
           <Link href="/tools/tenancy-health-check/survey">
@@ -93,26 +104,6 @@ export default function TenantScoreLanding() {
           </Link>
         </section>
       </main>
-
-      
-    </div>
-  );
-}
-
-function Feature({ title, desc }) {
-  return (
-    <div className="bg-white border rounded-xl shadow p-6">
-      <h3 className="font-bold text-yellow-600 mb-2">{title}</h3>
-      <p className="text-sm text-gray-600">{desc}</p>
-    </div>
-  );
-}
-
-function Step({ num, title, desc }) {
-  return (
-    <div>
-      <h4 className="font-semibold text-yellow-700 mb-2">{num}. {title}</h4>
-      <p className="text-sm text-gray-600">{desc}</p>
     </div>
   );
 }
