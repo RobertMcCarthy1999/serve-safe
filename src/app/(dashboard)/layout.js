@@ -1,7 +1,6 @@
 // File: src/app/(dashboard)/layout.js (no "use client" here!)
 
 import Footer from '@/app/components/Footer'; // this can be a client component
-import './dashboard.css';
 
 export const metadata = {
   title: 'Dashboard | LetSuite',
