@@ -3,7 +3,6 @@ import { Analytics } from '@vercel/analytics/react';
 import ToasterClient from './components/ToasterClient';
 import NavBar from './components/NavBar';
 import { cookies } from 'next/headers';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Montserrat } from 'next/font/google';
 
 const montserrat = Montserrat({
@@ -17,11 +16,9 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const supabase = createServerComponentClient({ cookies: () => cookies() });
+  
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+
 
   return (
     <html lang="en">
