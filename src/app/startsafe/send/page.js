@@ -58,7 +58,7 @@ export default function SendPage() {
       <main className="flex-grow">
         <div className="text-center pt-6">
           <Image
-            src="/images/letsuite-logo.png"
+            src="/images/startsafe-logo-white.png"
             alt="LetSuite Logo"
             width={160}
             height={64}
