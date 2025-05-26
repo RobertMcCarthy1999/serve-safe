@@ -25,7 +25,8 @@ export default function Dashboard() {
 
  
 
-  if (loading) return <p className="text-center mt-20">Loading...</p>;
+  const [loading, setLoading] = useState(true);
+
 
   const toolDescriptions = {
     StartSafe: 'Upload and deliver all 7 legally required tenancy start documents.',
