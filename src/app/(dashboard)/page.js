@@ -6,13 +6,12 @@ import toast from 'react-hot-toast';
 import NotifyModal from '@/app/components/NotifyModal';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import { SignedIn, SignedOut, SignIn, useUser } from '@clerk/nextjs';
 
 export default function Dashboard() {
+  const { user } = useUser();
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedTool, setSelectedTool] = useState('');
- 
-
   const router = useRouter();
 
   useEffect(() => {
@@ -22,11 +21,6 @@ export default function Dashboard() {
       router.replace('/');
     }
   }, [router]);
-
- 
-
-  const [loading, setLoading] = useState(true);
-
 
   const toolDescriptions = {
     StartSafe: 'Upload and deliver all 7 legally required tenancy start documents.',
@@ -39,81 +33,95 @@ export default function Dashboard() {
     'LLM Bot Assistant': 'AI assistant to answer legal landlord questions.',
   };
 
+  // Example: You can check metadata here in future
+  const isPro = user?.publicMetadata?.pro === true;
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100 p-6">
-      <NotifyModal toolName={selectedTool} isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+    <>
+      <SignedIn>
+        <main className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100 p-6">
+          <NotifyModal toolName={selectedTool} isOpen={modalOpen} onClose={() => setModalOpen(false)} />
 
-      <div className="max-w-6xl mx-auto mb-6">
-        <div className="flex justify-between items-center bg-white rounded-2xl shadow p-6">
-          <Image
-            src="/images/letsuite-logo.png"
-            alt="LetSuite logo"
-            width={160}
-            height={64}
-            className="object-contain"
-          />
-         <Link href="/" className="bg-gray-100 text-gray-600 px-4 py-2 rounded hover:bg-gray-200">
-  Home
-</Link>
+          <div className="max-w-6xl mx-auto mb-6">
+            <div className="flex justify-between items-center bg-white rounded-2xl shadow p-6">
+              <Image
+                src="/images/letsuite-logo.png"
+                alt="LetSuite logo"
+                width={160}
+                height={64}
+                className="object-contain"
+              />
+              <Link href="/" className="bg-gray-100 text-gray-600 px-4 py-2 rounded hover:bg-gray-200">
+                Home
+              </Link>
+            </div>
+          </div>
 
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white rounded-2xl shadow p-6 mb-8">
+              <h1 className="text-3xl font-bold text-gray-800">
+                Welcome back, {user?.firstName || 'Landlord'} 👋
+              </h1>
+              <p className="text-gray-600 mt-2">
+                Here’s your LetSuite lettings toolkit — manage legal docs, rent, repairs and more.
+              </p>
+            </div>
 
-        </div>
-      </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
+              {Object.entries(toolDescriptions).map(([title, description]) => (
+                <ToolCard
+                  key={title}
+                  title={title}
+                  status={
+                    ['StartSafe', 'TenantScore'].includes(title)
+                      ? 'Live'
+                      : title === 'LLM Bot Assistant'
+                      ? 'Later Stage'
+                      : 'Planned'
+                  }
+                  action={['StartSafe', 'TenantScore'].includes(title) ? 'Use Now' : 'Notify Me'}
+                  color={
+                    title === 'StartSafe'
+                      ? 'bg-blue-500'
+                      : title === 'ServeSafe'
+                      ? 'bg-green-500'
+                      : title === 'TenantScore'
+                      ? 'bg-yellow-500'
+                      : title === 'KeyTrack'
+                      ? 'bg-indigo-500'
+                      : title === 'DocVault'
+                      ? 'bg-purple-500'
+                      : title === 'FixLog'
+                      ? 'bg-orange-500'
+                      : title === 'InventoryPro'
+                      ? 'bg-rose-500'
+                      : 'bg-gray-500'
+                  }
+                  onClick={() => {
+                    // Example unlock logic
+                    if (title === 'StartSafe') {
+                      router.push('/startsafe');
+                    } else if (title === 'TenantScore') {
+                      router.push('/tools/tenancy-health-check');
+                    } else if (title === 'FixLog' && !isPro) {
+                      toast.error('Upgrade to Pro to access FixLog');
+                    } else {
+                      setSelectedTool(title);
+                      setModalOpen(true);
+                    }
+                  }}
+                  description={description}
+                />
+              ))}
+            </div>
+          </div>
+        </main>
+      </SignedIn>
 
-      <div className="max-w-6xl mx-auto">
-        <div className="bg-white rounded-2xl shadow p-6 mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Welcome to LetSuite 👋</h1>
-          <p className="text-gray-600 mt-2">
-            Here’s your LetSuite lettings toolkit — manage legal docs, rent, repairs and more.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
-          {Object.entries(toolDescriptions).map(([title, description]) => (
-            <ToolCard
-              key={title}
-              title={title}
-              status={
-                ['StartSafe', 'TenantScore'].includes(title)
-                  ? 'Live'
-                  : title === 'LLM Bot Assistant'
-                  ? 'Later Stage'
-                  : 'Planned'
-              }
-              action={['StartSafe', 'TenantScore'].includes(title) ? 'Use Now' : 'Notify Me'}
-              color={
-                title === 'StartSafe'
-                  ? 'bg-blue-500'
-                  : title === 'ServeSafe'
-                  ? 'bg-green-500'
-                  : title === 'TenantScore'
-                  ? 'bg-yellow-500'
-                  : title === 'KeyTrack'
-                  ? 'bg-indigo-500'
-                  : title === 'DocVault'
-                  ? 'bg-purple-500'
-                  : title === 'FixLog'
-                  ? 'bg-orange-500'
-                  : title === 'InventoryPro'
-                  ? 'bg-rose-500'
-                  : 'bg-gray-500'
-              }
-              onClick={() => {
-                if (title === 'StartSafe') {
-                  window.location.href = '/startsafe';
-                } else if (title === 'TenantScore') {
-                  window.location.href = '/tools/tenancy-health-check';
-                } else {
-                  setSelectedTool(title);
-                  setModalOpen(true);
-                }
-              }}
-              description={description}
-            />
-          ))}
-        </div>
-      </div>
-    </main>
+      <SignedOut>
+        <SignIn redirectUrl="/dashboard" />
+      </SignedOut>
+    </>
   );
 }
 
