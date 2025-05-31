@@ -102,7 +102,7 @@ export default function Dashboard() {
                     if (title === 'StartSafe') {
                       router.push('/startsafe');
                     } else if (title === 'TenantScore') {
-                      router.push('/tools/tenancy-health-check');
+                      router.push('/dashboard/tools/tenancy-health-check');
                     } else if (title === 'FixLog' && !isPro) {
                       toast.error('Upgrade to Pro to access FixLog');
                     } else {
