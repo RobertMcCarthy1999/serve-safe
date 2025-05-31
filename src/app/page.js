@@ -41,7 +41,7 @@ export default function HomePage() {
       {/* Explainer + Waitlist */}
       <section className="mt-16 bg-white text-gray-900 px-6 py-12 rounded-xl max-w-2xl mx-auto shadow">
         <h2 className="text-2xl font-bold text-center mb-4">
-          Serve-Safe empowers landlords to manage legally, simply, and independently.
+          LetSuite empowers landlords to manage legally, simply, and independently.
         </h2>
         <p className="text-center text-gray-600 mb-6">
           Join the waitlist to get early access and a 30% lifetime discount for the first 100 users.
