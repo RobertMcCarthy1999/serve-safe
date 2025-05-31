@@ -34,6 +34,7 @@ export default function Dashboard() {
   const toolDescriptions = {
     StartSafe: 'Upload and deliver all 7 legally required tenancy start documents.',
     ServeSafe: 'Send legal notices like Section 21, Section 8 with proof.',
+    TenantScore: 'Collect feedback and scores to build tenant references.',
     KeyTrack: 'Track key handovers and returns with timestamped proof.',
     DocVault: 'Store and share landlord documents — searchable and safe.',
     FixLog: 'Let tenants report repairs. You get notified + it gets logged.',
@@ -102,6 +103,8 @@ export default function Dashboard() {
                       ? 'bg-blue-500'
                       : title === 'ServeSafe'
                       ? 'bg-green-500'
+                      : title === 'TenantScore'
+                      ? 'bg-yellow-500'
                       : title === 'KeyTrack'
                       ? 'bg-indigo-500'
                       : title === 'DocVault'
