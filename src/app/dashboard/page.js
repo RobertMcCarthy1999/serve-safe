@@ -10,7 +10,6 @@ import {
   SignedIn,
   SignedOut,
   SignIn,
-  SignInButton,
   UserButton,
   useUser
 } from '@clerk/nextjs';
@@ -35,7 +34,6 @@ export default function Dashboard() {
   const toolDescriptions = {
     StartSafe: 'Upload and deliver all 7 legally required tenancy start documents.',
     ServeSafe: 'Send legal notices like Section 21, Section 8 with proof.',
-    TenantScore: 'Collect feedback and scores to build tenant references.',
     KeyTrack: 'Track key handovers and returns with timestamped proof.',
     DocVault: 'Store and share landlord documents — searchable and safe.',
     FixLog: 'Let tenants report repairs. You get notified + it gets logged.',
@@ -92,22 +90,18 @@ export default function Dashboard() {
                   key={title}
                   title={title}
                   status={
-                    ['StartSafe', 'TenantScore'].includes(title)
+                    title === 'StartSafe'
                       ? 'Live'
                       : title === 'LLM Bot Assistant'
                       ? 'Later Stage'
                       : 'Planned'
                   }
-                  action={
-                    ['StartSafe', 'TenantScore'].includes(title) ? 'Use Now' : 'Notify Me'
-                  }
+                  action={title === 'StartSafe' ? 'Use Now' : 'Notify Me'}
                   color={
                     title === 'StartSafe'
                       ? 'bg-blue-500'
                       : title === 'ServeSafe'
                       ? 'bg-green-500'
-                      : title === 'TenantScore'
-                      ? 'bg-yellow-500'
                       : title === 'KeyTrack'
                       ? 'bg-indigo-500'
                       : title === 'DocVault'
@@ -121,8 +115,6 @@ export default function Dashboard() {
                   onClick={() => {
                     if (title === 'StartSafe') {
                       router.push('/startsafe');
-                    } else if (title === 'TenantScore') {
-                      router.push('/tools/tenancy-health-check');
                     } else if (title === 'FixLog' && !isPro) {
                       toast.error('Upgrade to Pro to access FixLog');
                     } else {
@@ -139,11 +131,10 @@ export default function Dashboard() {
       </SignedIn>
 
       <SignedOut>
-  <div className="flex justify-center items-center min-h-screen px-4">
-    <SignIn redirectUrl="/dashboard" />
-  </div>
-</SignedOut>
-
+        <div className="flex justify-center items-center min-h-screen px-4">
+          <SignIn redirectUrl="/dashboard" />
+        </div>
+      </SignedOut>
     </>
   );
 }
