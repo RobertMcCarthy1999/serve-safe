@@ -52,11 +52,13 @@ export default function HomePage() {
         <h2 className="text-3xl font-bold mb-10">Why landlords love LetSuite</h2>
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 text-left">
           <div className="bg-gray-100 p-6 rounded shadow">
-            <p className="mb-4">"This toolkit helped me replace my letting agent and saved over £1,500 this year."</p>
+            <p className="mb-4">&ldquo;This toolkit helped me replace my letting agent and saved over £1,500 this year.&rdquo;</p>
+
             <p className="font-semibold">– Priya D., Croydon</p>
           </div>
           <div className="bg-gray-100 p-6 rounded shadow">
-            <p className="mb-4">"StartSafe and TenantScore are game-changers. Legal peace of mind in clicks."</p>
+            <p className="mb-4">&ldquo;StartSafe and TenantScore are game-changers. Legal peace of mind in clicks.&rdquo;</p>
+
             <p className="font-semibold">– Mike S., Liverpool</p>
           </div>
         </div>
