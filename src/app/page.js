@@ -1,4 +1,20 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function HomePage() {
+  const [form, setForm] = useState({ name: '', email: '', properties: '' });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Waitlist submission:', form);
+    setSubmitted(true);
+  };
+
   return (
     <main className="bg-white text-gray-900">
       {/* Hero */}
@@ -16,10 +32,66 @@ export default function HomePage() {
           </a>
         </div>
         <img
-          src="/dashboard-screenshot.png"  // <-- Place this in /public directory
+          src="dashboard-screenshot.png"
           alt="LetSuite Dashboard Screenshot"
           className="mx-auto rounded shadow-lg border border-white"
         />
+      </section>
+
+      {/* Explainer + Waitlist */}
+      <section className="mt-16 bg-white text-gray-900 px-6 py-12 rounded-xl max-w-2xl mx-auto shadow">
+        <h2 className="text-2xl font-bold text-center mb-4">
+          Serve-Safe empowers landlords to manage legally, simply, and independently.
+        </h2>
+        <p className="text-center text-gray-600 mb-6">
+          Join the waitlist to get early access and a 30% lifetime discount for the first 100 users.
+        </p>
+        {!submitted ? (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block font-semibold mb-1">Name</label>
+              <input
+                name="name"
+                required
+                onChange={handleChange}
+                className="w-full border p-2 rounded"
+                placeholder="Jane Landlord"
+              />
+            </div>
+            <div>
+              <label className="block font-semibold mb-1">Email</label>
+              <input
+                type="email"
+                name="email"
+                required
+                onChange={handleChange}
+                className="w-full border p-2 rounded"
+                placeholder="you@email.com"
+              />
+            </div>
+            <div>
+              <label className="block font-semibold mb-1">How many properties?</label>
+              <input
+                type="number"
+                name="properties"
+                onChange={handleChange}
+                className="w-full border p-2 rounded"
+                placeholder="e.g. 3"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            >
+              Join Waitlist
+            </button>
+          </form>
+        ) : (
+          <div className="bg-blue-50 border border-blue-200 rounded p-4 text-center">
+            <h3 className="font-bold text-lg mb-2">You're in! 🎉</h3>
+            <p>Thanks for signing up. We’ll be in touch soon.</p>
+          </div>
+        )}
       </section>
 
       {/* Features */}
@@ -53,12 +125,10 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 text-left">
           <div className="bg-gray-100 p-6 rounded shadow">
             <p className="mb-4">&ldquo;This toolkit helped me replace my letting agent and saved over £1,500 this year.&rdquo;</p>
-
             <p className="font-semibold">– Priya D., Croydon</p>
           </div>
           <div className="bg-gray-100 p-6 rounded shadow">
             <p className="mb-4">&ldquo;StartSafe and TenantScore are game-changers. Legal peace of mind in clicks.&rdquo;</p>
-
             <p className="font-semibold">– Mike S., Liverpool</p>
           </div>
         </div>
