@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function HomePage() {
   const [form, setForm] = useState({ name: '', email: '', properties: '' });
@@ -28,7 +29,7 @@ export default function HomePage() {
             <a href="#features" className="hover:text-blue-600">Features</a>
             <a href="/pricing" className="hover:text-blue-600">Pricing</a>
             <a href="/contact" className="hover:text-blue-600">Contact</a>
-            <a href="/sign-in" className="hover:text-blue-600">Login</a>
+            <Link href="/sign-in" className="hover:text-blue-600">Login</Link>
             <a
               href="/sign-up"
               className="ml-4 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition"
@@ -114,8 +115,8 @@ export default function HomePage() {
             </form>
           ) : (
             <div className="bg-blue-50 border border-blue-200 rounded p-4 text-center">
-              <h3 className="font-bold text-lg mb-2">You're in! 🎉</h3>
-              <p>Thanks for signing up. We&rsquo;ll be in touch soon.</p>
+              <h3 className="font-bold text-lg mb-2">You&apos;re in! 🎉</h3>
+              <p>Thanks for signing up. We&apos;ll be in touch soon.</p>
             </div>
           )}
         </section>
