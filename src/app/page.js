@@ -23,7 +23,6 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <img src="/images/letsuite-logo.png" alt="LetSuite logo" className="h-8 w-auto" />
-            <span className="font-bold text-xl text-blue-700">LetSuite</span>
           </div>
           <nav className="hidden md:flex items-center space-x-6 text-gray-700 font-medium">
             <a href="#features" className="hover:text-blue-600">Features</a>
