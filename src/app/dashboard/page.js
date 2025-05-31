@@ -139,8 +139,11 @@ export default function Dashboard() {
       </SignedIn>
 
       <SignedOut>
-        <SignIn redirectUrl="/dashboard" />
-      </SignedOut>
+  <div className="flex justify-center items-center min-h-screen px-4">
+    <SignIn redirectUrl="/dashboard" />
+  </div>
+</SignedOut>
+
     </>
   );
 }
