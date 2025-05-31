@@ -16,7 +16,7 @@ export default function HomePage() {
           </a>
         </div>
         <img
-          src="/dashboard-screenshot.png"  // <-- Place this in /public directory
+          src="dashboard-screenshot.png"  // <-- Place this in /public directory
           alt="LetSuite Dashboard Screenshot"
           className="mx-auto rounded shadow-lg border border-white"
         />
