@@ -6,7 +6,14 @@ import toast from 'react-hot-toast';
 import NotifyModal from '@/app/components/NotifyModal';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SignedIn, SignedOut, SignIn, useUser } from '@clerk/nextjs';
+import {
+  SignedIn,
+  SignedOut,
+  SignIn,
+  SignInButton,
+  UserButton,
+  useUser
+} from '@clerk/nextjs';
 
 export default function Dashboard() {
   const { user } = useUser();
@@ -16,7 +23,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     const hash = window.location.hash;
-    if (hash.includes('error=access_denied') || hash.includes('error_code=otp_expired')) {
+    if (
+      hash.includes('error=access_denied') ||
+      hash.includes('error_code=otp_expired')
+    ) {
       toast.error('Login link has expired or already been used.');
       router.replace('/');
     }
@@ -33,14 +43,17 @@ export default function Dashboard() {
     'LLM Bot Assistant': 'AI assistant to answer legal landlord questions.',
   };
 
-  // Example: You can check metadata here in future
   const isPro = user?.publicMetadata?.pro === true;
 
   return (
     <>
       <SignedIn>
         <main className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100 p-6">
-          <NotifyModal toolName={selectedTool} isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+          <NotifyModal
+            toolName={selectedTool}
+            isOpen={modalOpen}
+            onClose={() => setModalOpen(false)}
+          />
 
           <div className="max-w-6xl mx-auto mb-6">
             <div className="flex justify-between items-center bg-white rounded-2xl shadow p-6">
@@ -51,9 +64,15 @@ export default function Dashboard() {
                 height={64}
                 className="object-contain"
               />
-              <Link href="/" className="bg-gray-100 text-gray-600 px-4 py-2 rounded hover:bg-gray-200">
-                Home
-              </Link>
+              <div className="flex items-center space-x-4">
+                <Link
+                  href="/"
+                  className="bg-gray-100 text-gray-600 px-4 py-2 rounded hover:bg-gray-200"
+                >
+                  Home
+                </Link>
+                <UserButton afterSignOutUrl="/" />
+              </div>
             </div>
           </div>
 
@@ -79,7 +98,9 @@ export default function Dashboard() {
                       ? 'Later Stage'
                       : 'Planned'
                   }
-                  action={['StartSafe', 'TenantScore'].includes(title) ? 'Use Now' : 'Notify Me'}
+                  action={
+                    ['StartSafe', 'TenantScore'].includes(title) ? 'Use Now' : 'Notify Me'
+                  }
                   color={
                     title === 'StartSafe'
                       ? 'bg-blue-500'
@@ -98,7 +119,6 @@ export default function Dashboard() {
                       : 'bg-gray-500'
                   }
                   onClick={() => {
-                    // Example unlock logic
                     if (title === 'StartSafe') {
                       router.push('/startsafe');
                     } else if (title === 'TenantScore') {
