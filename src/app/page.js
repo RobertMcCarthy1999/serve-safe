@@ -88,8 +88,8 @@ export default function HomePage() {
           </form>
         ) : (
           <div className="bg-blue-50 border border-blue-200 rounded p-4 text-center">
-            <h3 className="font-bold text-lg mb-2">You're in! 🎉</h3>
-            <p>Thanks for signing up. We’ll be in touch soon.</p>
+            <h3 className="font-bold text-lg mb-2">You&apos;re in! 🎉</h3>
+            <p>Thanks for signing up. We&apos;ll be in touch soon.</p>
           </div>
         )}
       </section>
