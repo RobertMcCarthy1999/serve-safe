@@ -3,8 +3,8 @@ import { SignIn } from '@clerk/nextjs';
 
 export default function SignInPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white px-4">
-      <div className="w-full max-w-md">
+    <div className="flex justify-center items-center min-h-screen w-screen bg-gray-50">
+      <div className="w-full max-w-md px-4">
         <SignIn redirectUrl="/dashboard" />
       </div>
     </div>
