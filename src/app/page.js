@@ -1,124 +1,116 @@
 'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
 
 export default function HomePage() {
-  const [email, setEmail] = useState('');
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', properties: '' });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Captured email:', email);
-    setEmail('');
+    console.log('Waitlist submission:', form);
+    setSubmitted(true);
   };
 
-  const navLinks = [
-    { href: '#features', label: 'Features' },
-    { href: '#pricing', label: 'Pricing' },
-    { href: '#contact', label: 'Contact' },
-  ];
-
   return (
-    <main className="text-gray-900">
-      {/* Mobile & Desktop Nav */}
-      <nav className="flex justify-between items-center px-6 py-4 bg-white shadow sticky top-0 z-50">
-        <div className="text-2xl font-bold text-blue-700">LetSuite</div>
-
-        {/* Desktop */}
-        <div className="hidden md:flex space-x-6 text-sm font-medium">
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="hover:text-blue-600">
-              {link.label}
-            </a>
-          ))}
-          <Link
-            href="/sign-up"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-          >
-            Try it FREE
-          </Link>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-blue-700"
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </nav>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden px-6 py-4 bg-white shadow space-y-3">
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="block hover:text-blue-600">
-              {link.label}
-            </a>
-          ))}
-          <Link
-            href="/sign-up"
-            className="block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-          >
-            Try it FREE
-          </Link>
-        </div>
-      )}
-
+    <main className="bg-white text-gray-900">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-blue-600 to-blue-400 text-white text-center py-24 px-6">
-        <h1 className="text-5xl font-bold mb-6">Simplify Property Management for UK Landlords</h1>
-        <p className="text-xl mb-10 max-w-2xl mx-auto">
-          LetSuite helps you stay compliant, organized, and stress-free with legal tools, document tracking, and tenant management — all in one dashboard.
+      <section className="bg-gradient-to-br from-blue-600 to-blue-400 text-white text-center py-20 px-6">
+        <h1 className="text-5xl font-bold mb-6 max-w-4xl mx-auto">Your Complete Landlord Toolkit</h1>
+        <p className="text-xl mb-10 max-w-3xl mx-auto">
+          LetSuite brings all your compliance, documentation, tenant comms, and repairs into one easy-to-use dashboard. No letting agent required.
         </p>
-        <form onSubmit={handleSubmit} className="flex justify-center mb-8 gap-2 max-w-md mx-auto">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="rounded px-4 py-2 w-full text-black"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <button
-            type="submit"
-            className="bg-white text-blue-600 px-4 py-2 rounded font-semibold hover:bg-blue-100 transition"
-          >
-            Notify Me
-          </button>
-        </form>
-        <Image
-          src="/dashboard-screenshot.png"
-          alt="Dashboard preview"
-          width={800}
-          height={450}
+        <div className="space-x-4 mb-10">
+          <a href="/sign-up" className="bg-white text-blue-700 font-semibold px-6 py-3 rounded shadow hover:bg-blue-100 transition">
+            Try LetSuite Free
+          </a>
+          <a href="/dashboard" className="border border-white px-6 py-3 rounded hover:bg-white hover:text-blue-700 transition">
+            View Dashboard
+          </a>
+        </div>
+        <img
+          src="dashboard-screenshot.png"
+          alt="LetSuite Dashboard Screenshot"
           className="mx-auto rounded shadow-lg border border-white"
         />
       </section>
 
+      {/* Explainer + Waitlist */}
+      <section className="mt-16 bg-white text-gray-900 px-6 py-12 rounded-xl max-w-2xl mx-auto shadow">
+        <h2 className="text-2xl font-bold text-center mb-4">
+          Serve-Safe empowers landlords to manage legally, simply, and independently.
+        </h2>
+        <p className="text-center text-gray-600 mb-6">
+          Join the waitlist to get early access and a 30% lifetime discount for the first 100 users.
+        </p>
+        {!submitted ? (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block font-semibold mb-1">Name</label>
+              <input
+                name="name"
+                required
+                onChange={handleChange}
+                className="w-full border p-2 rounded"
+                placeholder="Jane Landlord"
+              />
+            </div>
+            <div>
+              <label className="block font-semibold mb-1">Email</label>
+              <input
+                type="email"
+                name="email"
+                required
+                onChange={handleChange}
+                className="w-full border p-2 rounded"
+                placeholder="you@email.com"
+              />
+            </div>
+            <div>
+              <label className="block font-semibold mb-1">How many properties?</label>
+              <input
+                type="number"
+                name="properties"
+                onChange={handleChange}
+                className="w-full border p-2 rounded"
+                placeholder="e.g. 3"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            >
+              Join Waitlist
+            </button>
+          </form>
+        ) : (
+          <div className="bg-blue-50 border border-blue-200 rounded p-4 text-center">
+            <h3 className="font-bold text-lg mb-2">You&apos;re in! 🎉</h3>
+            <p>Thanks for signing up. We&apos;ll be in touch soon.</p>
+          </div>
+        )}
+      </section>
+
       {/* Features */}
-      <section id="features" className="bg-white py-20 px-6">
+      <section className="bg-gray-50 py-20 px-6">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Manage legally, simply, and independently</h2>
+          <h2 className="text-3xl font-bold mb-6">Everything you need to self-manage your rental legally and confidently</h2>
           <p className="text-lg text-gray-700 mb-12">
-            LetSuite empowers landlords to replace letting agents with legal automation, built-in proof, and tenant tools.
+            LetSuite replaces scattered tools and expensive agents with a central hub designed for UK landlords.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            {[{
-              title: 'StartSafe',
-              desc: 'Deliver all 7 required tenancy documents with proof.'
-            }, {
-              title: 'ServeSafe',
-              desc: 'Send Section 21/8 notices legally, with delivery records.'
-            }, {
-              title: 'FixLog',
-              desc: 'Log repairs reported by tenants and get notified automatically.'
-            }].map((f, i) => (
-              <div key={i} className="bg-gray-50 p-6 rounded shadow">
+            {[
+              { title: "StartSafe", desc: "Upload and deliver all 7 legally required tenancy start documents. Built-in proof delivery." },
+              { title: "ServeSafe", desc: "Send Section 21 and Section 8 notices with secure timestamped proof — legally structured and fast." },
+              { title: "TenantScore", desc: "Collect real feedback on tenants and build legitimate, sharable references from real history." },
+              { title: "FixLog", desc: "Let tenants report issues directly to you. Get notified and log everything automatically." },
+              { title: "DocVault", desc: "Store, search and share key landlord docs. Encrypted and always at hand when needed." },
+              { title: "KeyTrack", desc: "Track handovers and returns with photo and timestamp proof. Built to avoid disputes." },
+            ].map((f, i) => (
+              <div key={i} className="bg-white p-6 rounded shadow">
                 <h3 className="font-bold text-xl mb-2">{f.title}</h3>
                 <p>{f.desc}</p>
               </div>
@@ -127,36 +119,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="bg-gray-100 py-20 px-6 text-center">
-        <h2 className="text-3xl font-bold mb-6">Simple Pricing</h2>
-        <p className="text-gray-700 mb-10">No agents. No hidden fees. Just one monthly plan.</p>
-        <div className="max-w-md mx-auto bg-white shadow rounded p-8">
-          <h3 className="text-2xl font-bold mb-4">£9/month</h3>
-          <ul className="text-left list-disc list-inside mb-6 text-gray-700">
-            <li>Unlimited documents</li>
-            <li>Legal templates &amp; notices</li>
-            <li>Tenant communication tools</li>
-            <li>First 14 days free</li>
-          </ul>
-          <Link
-            href="/sign-up"
-            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
-          >
-            Start Free Trial
-          </Link>
+      {/* Testimonials */}
+      <section className="bg-white py-20 px-6 text-center">
+        <h2 className="text-3xl font-bold mb-10">Why landlords love LetSuite</h2>
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 text-left">
+          <div className="bg-gray-100 p-6 rounded shadow">
+            <p className="mb-4">&ldquo;This toolkit helped me replace my letting agent and saved over £1,500 this year.&rdquo;</p>
+            <p className="font-semibold">– Priya D., Croydon</p>
+          </div>
+          <div className="bg-gray-100 p-6 rounded shadow">
+            <p className="mb-4">&ldquo;StartSafe and TenantScore are game-changers. Legal peace of mind in clicks.&rdquo;</p>
+            <p className="font-semibold">– Mike S., Liverpool</p>
+          </div>
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="bg-white py-20 px-6 text-center">
-        <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
-        <p className="text-gray-700 mb-4">
-          Questions? Email{' '}
-          <a href="mailto:support@letsuite.co.uk" className="text-blue-600 underline">
-            support@letsuite.co.uk
-          </a>
-        </p>
+      {/* CTA */}
+      <section className="bg-blue-600 text-white text-center py-16 px-6">
+        <h2 className="text-3xl font-bold mb-4">Built for landlords. Trusted by landlords.</h2>
+        <p className="mb-8 text-lg">LetSuite is your legal, secure, and scalable solution to managing rentals on your terms.</p>
+        <a href="/sign-up" className="bg-white text-blue-700 font-semibold px-6 py-3 rounded shadow hover:bg-blue-100 transition">
+          Get Started Free
+        </a>
       </section>
 
       {/* Footer */}
