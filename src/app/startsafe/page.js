@@ -9,21 +9,32 @@ export default function HomePage() {
       <NavBar />
 
       <main className="flex-grow bg-white text-gray-900">
+        
         {/* Hero Section */}
-        <section className="bg-blue-600 text-white py-16 px-6 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h1 className="text-4xl font-bold mb-4">StartSafe for Landlords</h1>
-            <p className="text-lg mb-6">
-              Upload and deliver legally required documents to your tenants in minutes.
-            </p>
-            <a
-              href="/startsafe/send"
-              className="inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition"
-            >
-              Get Started
-            </a>
-          </div>
-        </section>
+        <section className="bg-blue-600 text-white py-20 px-6">
+  <div className="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-12">
+    <div>
+      <h1 className="text-4xl md:text-5xl font-bold mb-4">StartSafe for Landlords</h1>
+      <p className="text-lg mb-6">
+        Upload and deliver legally required documents to your tenants in minutes.
+      </p>
+      <a
+        href="/startsafe/send"
+        className="inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition"
+      >
+        Get Started
+      </a>
+    </div>
+    <div className="flex justify-center">
+      <img
+        src="/images/startsafe-hero.png"
+        alt="Illustration of StartSafe in use"
+        className="w-full max-w-md"
+      />
+    </div>
+  </div>
+</section>
+
 
         {/* Why Use StartSafe */}
         <section className="py-16 px-6 bg-gray-50">
