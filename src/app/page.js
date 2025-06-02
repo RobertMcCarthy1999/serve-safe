@@ -46,7 +46,8 @@ export default function HomePage() {
       </section>
 
       {/* Explainer + Waitlist */}
-      <section className="mt-16 bg-white text-gray-900 px-6 py-12 rounded-xl max-w-2xl mx-auto shadow">
+      <section className="mt-16 mb-20 bg-white text-gray-900 px-6 py-12 rounded-xl max-w-2xl mx-auto shadow">
+
         <h2 className="text-2xl font-bold text-center mb-4">
           Serve-Safe empowers landlords to manage legally, simply, and independently.
         </h2>
