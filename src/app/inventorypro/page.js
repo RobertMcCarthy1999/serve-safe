@@ -1,3 +1,7 @@
+'use client';
+
+import Link from 'next/link';
+
 export default function InventoryProLanding() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-12">
@@ -11,12 +15,12 @@ export default function InventoryProLanding() {
         <li>Save, preview, and export as PDF</li>
         <li>Compare reports over time</li>
       </ul>
-      <a
+      <Link
         href="/inventorypro/send"
         className="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700"
       >
         Start Inventory Report
-      </a>
+      </Link>
     </main>
   );
 }
