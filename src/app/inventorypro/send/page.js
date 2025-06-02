@@ -3,9 +3,8 @@
 import React, { useState, useRef } from 'react';
 import dynamic from 'next/dynamic';
 
-const PrintButton = dynamic(() => import('@/app/components/PrintButton'), {
-  ssr: false
-});
+import PrintButton from '@/app/components/PrintButton';
+
 
 export default function InventoryProSendPage() {
   const [metadata, setMetadata] = useState({
