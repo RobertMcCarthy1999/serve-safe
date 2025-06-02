@@ -1,10 +1,9 @@
-export const dynamic = 'force-dynamic';
 'use client';
-
-
+export const dynamic = 'force-dynamic';
 
 import React, { useState, useRef } from 'react';
-import nextDynamic from 'next/dynamic';
+import dynamic from 'next/dynamic';
+
 
 
 import PrintButton from '@/app/components/PrintButton';
