@@ -2,12 +2,8 @@
 export const dynamic = 'force-dynamic';
 
 import React, { useState, useRef } from 'react';
-import dynamic from 'next/dynamic';
-
-
-
+import nextDynamic from 'next/dynamic';
 import PrintButton from '@/app/components/PrintButton';
-
 
 export default function InventoryProSendPage() {
   const [metadata, setMetadata] = useState({
@@ -160,7 +156,6 @@ export default function InventoryProSendPage() {
       </div>
 
       <div style={{ position: 'absolute', left: '-9999px' }}>
-
         <div ref={componentRef} className="p-6">
           <h1 className="text-2xl font-bold mb-2">Inventory Report</h1>
           <p><strong>Address:</strong> {metadata.address}</p>
