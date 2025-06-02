@@ -1,41 +1,81 @@
-// ✅ inventorypro/page.js (Landing Page)
-
 'use client';
+
 import Link from 'next/link';
-import { Lightbulb, Camera, ClipboardList, FileText } from 'lucide-react';
 
 export default function InventoryProLanding() {
   return (
-    <main className="max-w-4xl mx-auto px-6 py-16 text-gray-800">
-      <h1 className="text-5xl font-extrabold mb-4">InventoryPro</h1>
-      <p className="text-xl text-gray-600 mb-10 max-w-2xl">
-        The fastest way to build and export professional landlord inventories with timestamped photos and structured reports.
-      </p>
+    <main className="bg-white">
+      {/* Hero */}
+      <section className="bg-gray-100 py-20 text-center px-4">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">InventoryPro for Landlords</h1>
+        <p className="text-lg max-w-2xl mx-auto mb-6">Create professional inventory reports with photos, notes, and export to PDF — all in minutes.</p>
+        <Link href="/inventorypro/send">
+          <button className="bg-pink-600 text-white px-6 py-3 rounded hover:bg-pink-700">
+            Get Started
+          </button>
+        </Link>
+      </section>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-        <Feature icon={<ClipboardList />} title="Room-by-Room Reports" description="Document every space with notes, condition, and timestamps." />
-        <Feature icon={<Camera />} title="Photo Uploads" description="Capture visual proof to support your report." />
-        <Feature icon={<FileText />} title="Export to PDF" description="Generate print-ready PDFs with all metadata." />
-        <Feature icon={<Lightbulb />} title="Smart UX" description="Optimised form flow for desktop or mobile use." />
-      </div>
+      {/* Why Use InventoryPro */}
+      <section className="py-16 px-4 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-semibold text-center mb-10">Why Use InventoryPro?</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          <FeatureCard title="Room-by-Room Reports" icon="📋" text="Document every space with notes and condition." />
+          <FeatureCard title="Photo Uploads" icon="📷" text="Capture timestamped photos as proof." />
+          <FeatureCard title="PDF Export" icon="📄" text="Download a report for deposit protection and disputes." />
+        </div>
+      </section>
 
-      <Link href="/inventorypro/send">
-        <button className="bg-rose-600 hover:bg-rose-700 text-white font-medium px-6 py-3 rounded-lg text-lg shadow">
-          Get Started
-        </button>
-      </Link>
+      {/* How It Works */}
+      <section className="bg-gray-50 py-16 px-4">
+        <h2 className="text-3xl font-semibold text-center mb-10">How It Works</h2>
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <StepCard title="Add Rooms" text="Create a section for each room in the property." />
+          <StepCard title="Add Items + Photos" text="Log conditions and upload photo evidence." />
+          <StepCard title="Export to PDF" text="Download a print-ready report with one click." />
+        </div>
+      </section>
+
+      {/* Why Landlords Trust It */}
+      <section className="py-16 px-4 max-w-3xl mx-auto text-center">
+        <h2 className="text-3xl font-semibold mb-6">Why Landlords Trust InventoryPro</h2>
+        <ul className="text-left list-disc pl-6 space-y-2">
+          <li>Quick to complete on site</li>
+          <li>High-quality reports reduce disputes</li>
+          <li>No more paper forms or Word templates</li>
+          <li>Free to use while in beta</li>
+        </ul>
+      </section>
+
+      {/* Call to Action */}
+      <section className="bg-pink-600 text-white py-20 text-center">
+        <h2 className="text-3xl font-bold mb-4">Start building reports today</h2>
+        <Link href="/inventorypro/send">
+          <button className="bg-white text-pink-600 font-semibold px-6 py-3 rounded hover:bg-gray-100">
+            Get Started
+          </button>
+        </Link>
+      </section>
     </main>
   );
 }
 
-function Feature({ icon, title, description }) {
+// Reusable components
+function FeatureCard({ icon, title, text }) {
   return (
-    <div className="bg-white shadow rounded-lg p-5 flex items-start space-x-4">
-      <div className="text-rose-600">{icon}</div>
-      <div>
-        <h3 className="font-semibold text-lg mb-1">{title}</h3>
-        <p className="text-gray-600 text-sm">{description}</p>
-      </div>
+    <div className="bg-white border p-6 rounded-lg text-center shadow">
+      <div className="text-4xl mb-3">{icon}</div>
+      <h3 className="font-bold text-lg mb-2">{title}</h3>
+      <p>{text}</p>
+    </div>
+  );
+}
+
+function StepCard({ title, text }) {
+  return (
+    <div className="bg-white border p-6 rounded-lg shadow">
+      <h3 className="font-bold text-lg mb-2">{title}</h3>
+      <p>{text}</p>
     </div>
   );
 }
