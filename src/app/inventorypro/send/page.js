@@ -2,6 +2,7 @@
 import React, { useState, useRef } from 'react';
 import ReactToPrint from 'react-to-print';
 
+
 export default function InventoryProSendPage() {
   const [metadata, setMetadata] = useState({
     address: '',
