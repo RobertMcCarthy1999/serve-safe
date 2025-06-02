@@ -123,7 +123,7 @@ export default function InventoryProSendPage() {
                       key={k}
                       src={URL.createObjectURL(file)}
                       alt={`photo-${i}-${j}-${k}`}
-                      className="h-16 w-16 object-cover rounded border"
+                      className="h-56 w-56 object-cover rounded border"
                     />
                   ))}
                 </div>
