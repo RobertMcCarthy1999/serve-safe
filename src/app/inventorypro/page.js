@@ -6,15 +6,29 @@ export default function InventoryProLanding() {
   return (
     <main className="bg-white">
       {/* Hero */}
-      <section className="bg-gray-100 py-20 text-center px-4">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">InventoryPro for Landlords</h1>
-        <p className="text-lg max-w-2xl mx-auto mb-6">Create professional inventory reports with photos, notes, and export to PDF — all in minutes.</p>
-        <Link href="/inventorypro/send">
-          <button className="bg-pink-600 text-white px-6 py-3 rounded hover:bg-pink-700">
-            Get Started
-          </button>
-        </Link>
-      </section>
+      <section className="bg-gray-100 py-20 px-4">
+  <div className="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-12">
+    <div>
+      <h1 className="text-4xl md:text-5xl font-bold mb-4">InventoryPro for Landlords</h1>
+      <p className="text-lg mb-6">
+        The fastest way to build and export professional landlord inventories with timestamped photos and structured reports.
+      </p>
+      <Link href="/inventorypro/send">
+        <button className="bg-pink-600 text-white px-6 py-3 rounded hover:bg-pink-700">
+          Get Started
+        </button>
+      </Link>
+    </div>
+    <div className="flex justify-center">
+      <img
+        src="/images/inventorypro-hero.png"
+        alt="Illustration of InventoryPro in use"
+        className="w-full max-w-md"
+      />
+    </div>
+  </div>
+</section>
+
 
       {/* Why Use InventoryPro */}
       <section className="py-16 px-4 max-w-6xl mx-auto">
