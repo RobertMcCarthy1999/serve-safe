@@ -3,10 +3,8 @@
 import React, { useState, useRef } from "react";
 import dynamic from "next/dynamic";
 
-const ReactToPrint = dynamic(() =>
-  import('react-to-print').then(mod => mod.ReactToPrint),
-  { ssr: false }
-);
+const ReactToPrint = dynamic(() => import('react-to-print'), { ssr: false });
+
 
 
 export default function InventoryProSendPage() {
