@@ -2,14 +2,8 @@
 import React, { useState, useRef } from 'react';
 import dynamic from 'next/dynamic';
 
-// ✅ Correct dynamic import of ReactToPrint
-const ReactToPrint = dynamic(
-  async () => {
-    const mod = await import('react-to-print');
-    return mod.ReactToPrint;
-  },
-  { ssr: false }
-);
+const ReactToPrint = dynamic(() => import('react-to-print'), { ssr: false });
+
 
 export default function InventoryProSendPage() {
   const [metadata, setMetadata] = useState({
