@@ -4,7 +4,8 @@ export const dynamic = 'force-dynamic';
 
 
 import React, { useState, useRef } from 'react';
-import dynamic from 'next/dynamic';
+import nextDynamic from 'next/dynamic';
+
 
 import PrintButton from '@/app/components/PrintButton';
 
