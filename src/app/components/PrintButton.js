@@ -1,3 +1,5 @@
+/* eslint-env es2021 */
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import React, { useRef } from 'react';
@@ -36,7 +38,9 @@ export default function PrintButton({ componentRef }) {
 
     // Try to extract metadata directly from the DOM
     const addrText = clone.querySelector('p strong')?.nextSibling?.textContent?.trim();
-    const dateText = [...clone.querySelectorAll('p')].find(p => p.textContent.includes('Date:'))?.textContent.split(':')[1]?.trim();
+    const dateText = [...clone.querySelectorAll('p')]
+      .find(p => p.textContent.includes('Date:'))?.textContent.split(':')[1]?.trim();
+
     metadataRef.current = {
       address: addrText || 'Inventory_Report',
       date: dateText || new Date().toISOString().split('T')[0],
