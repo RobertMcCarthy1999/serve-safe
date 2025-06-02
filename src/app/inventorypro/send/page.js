@@ -1,26 +1,24 @@
-"use client";
+'use client';
 
-import React, { useState, useRef } from "react";
-import dynamic from "next/dynamic";
+import React, { useState, useRef } from 'react';
+import dynamic from 'next/dynamic';
 
-const ReactToPrint = dynamic(() => import('react-to-print'), { ssr: false });
-
-
+const PrintButton = dynamic(() => import('@/app/components/PrintButton'), {
+  ssr: false
+});
 
 export default function InventoryProSendPage() {
   const [metadata, setMetadata] = useState({
-    address: "",
-    inspector: "",
-    date: new Date().toISOString().split("T")[0],
-    reportType: "Check-in",
+    address: '',
+    inspector: '',
+    date: new Date().toISOString().split('T')[0],
+    reportType: 'Check-in',
   });
 
   const [rooms, setRooms] = useState([]);
   const componentRef = useRef();
 
-  const addRoom = () => {
-    setRooms([...rooms, { name: "", items: [] }]);
-  };
+  const addRoom = () => setRooms([...rooms, { name: '', items: [] }]);
 
   const updateRoom = (i, key, value) => {
     const newRooms = [...rooms];
@@ -30,7 +28,7 @@ export default function InventoryProSendPage() {
 
   const addItemToRoom = (roomIndex) => {
     const newRooms = [...rooms];
-    newRooms[roomIndex].items.push({ label: "", condition: "", notes: "", photos: [] });
+    newRooms[roomIndex].items.push({ label: '', condition: '', notes: '', photos: [] });
     setRooms(newRooms);
   };
 
@@ -49,7 +47,7 @@ export default function InventoryProSendPage() {
   const saveReport = () => {
     const report = { metadata, rooms };
     localStorage.setItem(`report-${Date.now()}`, JSON.stringify(report));
-    alert("Report saved locally.");
+    alert('Report saved locally.');
   };
 
   return (
@@ -93,7 +91,7 @@ export default function InventoryProSendPage() {
             className="w-full mb-3 border p-2 rounded"
             placeholder="Room Name (e.g., Living Room)"
             value={room.name}
-            onChange={(e) => updateRoom(i, "name", e.target.value)}
+            onChange={(e) => updateRoom(i, 'name', e.target.value)}
           />
           {room.items.map((item, j) => (
             <div key={j} className="border-t pt-4 mt-4">
@@ -101,19 +99,19 @@ export default function InventoryProSendPage() {
                 className="w-full mb-2 border p-2 rounded"
                 placeholder="Item (e.g., Wall 1)"
                 value={item.label}
-                onChange={(e) => updateItem(i, j, "label", e.target.value)}
+                onChange={(e) => updateItem(i, j, 'label', e.target.value)}
               />
               <input
                 className="w-full mb-2 border p-2 rounded"
                 placeholder="Condition"
                 value={item.condition}
-                onChange={(e) => updateItem(i, j, "condition", e.target.value)}
+                onChange={(e) => updateItem(i, j, 'condition', e.target.value)}
               />
               <textarea
                 className="w-full mb-2 border p-2 rounded"
                 placeholder="Notes"
                 value={item.notes}
-                onChange={(e) => updateItem(i, j, "notes", e.target.value)}
+                onChange={(e) => updateItem(i, j, 'notes', e.target.value)}
               />
               <input
                 type="file"
@@ -156,17 +154,9 @@ export default function InventoryProSendPage() {
         >
           💾 Save Report
         </button>
-        <ReactToPrint
-          trigger={() => (
-            <button className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800">
-              🖨️ Export PDF
-            </button>
-          )}
-          content={() => componentRef.current}
-        />
+        <PrintButton componentRef={componentRef} />
       </div>
 
-      {/* PDF preview hidden */}
       <div className="hidden">
         <div ref={componentRef} className="p-6">
           <h1 className="text-2xl font-bold mb-2">Inventory Report</h1>
@@ -174,7 +164,6 @@ export default function InventoryProSendPage() {
           <p><strong>Inspector:</strong> {metadata.inspector}</p>
           <p><strong>Date:</strong> {metadata.date}</p>
           <p><strong>Type:</strong> {metadata.reportType}</p>
-
           {rooms.map((room, i) => (
             <div key={i} className="mt-4">
               <h2 className="font-bold text-lg mb-1">{room.name}</h2>
