@@ -173,11 +173,19 @@ export default function InventoryProSendPage() {
                     <div className="flex gap-2 flex-wrap mt-2">
                       {item.photos.map((file, k) => (
                         <img
-                          key={k}
-                          src={URL.createObjectURL(file)}
-                          alt={`photo-${i}-${j}-${k}`}
-                          className="h-16 w-16 object-cover rounded border"
-                        />
+  key={k}
+  src={URL.createObjectURL(file)}
+  alt={`photo-${i}-${j}-${k}`}
+  style={{
+    width: '200px',
+    height: '200px',
+    objectFit: 'cover',
+    borderRadius: '8px',
+    border: '1px solid #ccc',
+    marginBottom: '8px'
+  }}
+/>
+
                       ))}
                     </div>
                   )}
