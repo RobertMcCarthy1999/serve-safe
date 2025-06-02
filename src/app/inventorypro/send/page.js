@@ -2,18 +2,18 @@
 import React, { useState, useRef } from 'react';
 import dynamic from 'next/dynamic';
 
-const ReactToPrint = dynamic(() => import('react-to-print').then(mod => mod.default), { ssr: false });
-
-
-
-
+// ✅ Correct dynamic import that avoids the undefined promise issue
+const ReactToPrint = dynamic(
+  () => import('react-to-print').then(mod => mod.default),
+  { ssr: false }
+);
 
 export default function InventoryProSendPage() {
   const [metadata, setMetadata] = useState({
     address: '',
     inspector: '',
     date: new Date().toISOString().split('T')[0],
-    reportType: 'Check-in'
+    reportType: 'Check-in',
   });
 
   const [rooms, setRooms] = useState([]);
@@ -24,27 +24,27 @@ export default function InventoryProSendPage() {
   };
 
   const updateRoom = (i, key, value) => {
-    const newRooms = [...rooms];
-    newRooms[i][key] = value;
-    setRooms(newRooms);
+    const updated = [...rooms];
+    updated[i][key] = value;
+    setRooms(updated);
   };
 
   const addItemToRoom = (roomIndex) => {
-    const newRooms = [...rooms];
-    newRooms[roomIndex].items.push({ label: '', condition: '', notes: '', photos: [] });
-    setRooms(newRooms);
+    const updated = [...rooms];
+    updated[roomIndex].items.push({ label: '', condition: '', notes: '', photos: [] });
+    setRooms(updated);
   };
 
   const updateItem = (roomIndex, itemIndex, key, value) => {
-    const newRooms = [...rooms];
-    newRooms[roomIndex].items[itemIndex][key] = value;
-    setRooms(newRooms);
+    const updated = [...rooms];
+    updated[roomIndex].items[itemIndex][key] = value;
+    setRooms(updated);
   };
 
   const handlePhotoUpload = (roomIndex, itemIndex, files) => {
-    const newRooms = [...rooms];
-    newRooms[roomIndex].items[itemIndex].photos = Array.from(files);
-    setRooms(newRooms);
+    const updated = [...rooms];
+    updated[roomIndex].items[itemIndex].photos = Array.from(files);
+    setRooms(updated);
   };
 
   const saveReport = () => {
@@ -57,6 +57,7 @@ export default function InventoryProSendPage() {
     <main className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4">InventoryPro</h1>
 
+      {/* Metadata */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <input
           className="border p-2 rounded"
@@ -87,6 +88,7 @@ export default function InventoryProSendPage() {
         </select>
       </div>
 
+      {/* Rooms and Items */}
       {rooms.map((room, i) => (
         <div key={i} className="border p-4 mb-4 rounded bg-white shadow">
           <input
@@ -143,6 +145,7 @@ export default function InventoryProSendPage() {
         </div>
       ))}
 
+      {/* Actions */}
       <div className="flex gap-4">
         <button
           onClick={addRoom}
@@ -166,7 +169,7 @@ export default function InventoryProSendPage() {
         />
       </div>
 
-      {/* Report Preview for PDF export */}
+      {/* Printable content */}
       <div className="hidden">
         <div ref={componentRef} className="p-6">
           <h1 className="text-2xl font-bold mb-2">Inventory Report</h1>
