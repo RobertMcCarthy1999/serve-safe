@@ -1,33 +1,77 @@
 'use client';
 
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import React, { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+
+// Utility to convert File to base64 string
+const fileToBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
 
 export default function PrintButton({ componentRef }) {
-  const downloadPDF = async () => {
-    const input = componentRef.current;
-    if (!input) return;
+  const printableRef = useRef();
+  const metadataRef = useRef({});
 
-    const canvas = await html2canvas(input, { scale: 2 });
-    const imgData = canvas.toDataURL('image/png');
+  const handlePrint = useReactToPrint({
+    content: () => printableRef.current,
+    documentTitle: generateTitle(),
+    removeAfterPrint: true,
+  });
 
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const pageWidth = pdf.internal.pageSize.getWidth();
+  // Create a title like: Inventory_12_Smith_St_2025-06-02
+  const generateTitle = () => {
+    const { address = 'Inventory', date = new Date().toISOString().split('T')[0] } = metadataRef.current;
+    const safeAddress = address.replace(/\s+/g, '_').replace(/[^\w-]/g, '');
+    return `${safeAddress}_${date}`;
+  };
 
-    const imgProps = pdf.getImageProperties(imgData);
-    const imgHeight = (imgProps.height * pageWidth) / imgProps.width;
+  const prepareContent = async () => {
+    if (!componentRef.current) return;
 
-    pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, imgHeight);
+    const clone = componentRef.current.cloneNode(true);
 
-    pdf.save('inventory-report.pdf');
+    // Try to extract metadata directly from the DOM
+    const addrText = clone.querySelector('p strong')?.nextSibling?.textContent?.trim();
+    const dateText = [...clone.querySelectorAll('p')].find(p => p.textContent.includes('Date:'))?.textContent.split(':')[1]?.trim();
+    metadataRef.current = {
+      address: addrText || 'Inventory_Report',
+      date: dateText || new Date().toISOString().split('T')[0],
+    };
+
+    const imgElements = clone.querySelectorAll('img');
+    for (const img of imgElements) {
+      const originalFile = [...componentRef.current.querySelectorAll('img')].find(
+        (orig) => orig.alt === img.alt
+      )?.src;
+
+      if (originalFile && originalFile.startsWith('blob:')) {
+        const blob = await fetch(originalFile).then((r) => r.blob());
+        const base64 = await fileToBase64(blob);
+        img.src = base64;
+      }
+    }
+
+    printableRef.current.innerHTML = '';
+    printableRef.current.appendChild(clone);
+    handlePrint();
   };
 
   return (
-    <button
-      onClick={downloadPDF}
-      className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800"
-    >
-      🖨️ Download PDF
-    </button>
+    <>
+      <button
+        onClick={prepareContent}
+        className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800"
+      >
+        🖨️ Download PDF
+      </button>
+
+      <div style={{ display: 'none' }}>
+        <div ref={printableRef} />
+      </div>
+    </>
   );
 }
