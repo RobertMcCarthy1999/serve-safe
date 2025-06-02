@@ -49,7 +49,7 @@ export default function HomePage() {
       <section className="mt-16 mb-20 bg-white text-gray-900 px-6 py-12 rounded-xl max-w-2xl mx-auto shadow">
 
         <h2 className="text-2xl font-bold text-center mb-4">
-          Serve-Safe empowers landlords to manage legally, simply, and independently.
+          LetSuite empowers landlords to manage legally, simply, and independently.
         </h2>
         <p className="text-center text-gray-600 mb-6">
           Join the waitlist to get early access and a 30% lifetime discount for the first 100 users.
@@ -103,29 +103,56 @@ export default function HomePage() {
       </section>
 
       {/* Features */}
-      <section className="bg-gray-50 py-20 px-6">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Everything you need to self-manage your rental legally and confidently</h2>
-          <p className="text-lg text-gray-700 mb-12">
-            LetSuite replaces scattered tools and expensive agents with a central hub designed for UK landlords.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            {[
-              { title: "StartSafe", desc: "Upload and deliver all 7 legally required tenancy start documents. Built-in proof delivery." },
-              { title: "ServeSafe", desc: "Send Section 21 and Section 8 notices with secure timestamped proof — legally structured and fast." },
-              { title: "TenantScore", desc: "Collect real feedback on tenants and build legitimate, sharable references from real history." },
-              { title: "FixLog", desc: "Let tenants report issues directly to you. Get notified and log everything automatically." },
-              { title: "DocVault", desc: "Store, search and share key landlord docs. Encrypted and always at hand when needed." },
-              { title: "KeyTrack", desc: "Track handovers and returns with photo and timestamp proof. Built to avoid disputes." },
-            ].map((f, i) => (
-              <div key={i} className="bg-white p-6 rounded shadow">
-                <h3 className="font-bold text-xl mb-2">{f.title}</h3>
-                <p>{f.desc}</p>
-              </div>
-            ))}
-          </div>
+<section className="bg-gray-50 py-20 px-6">
+  <div className="max-w-5xl mx-auto text-center">
+    <h2 className="text-3xl font-bold mb-6">Everything you need to self-manage your rental legally and confidently</h2>
+    <p className="text-lg text-gray-700 mb-12">
+      LetSuite replaces scattered tools and expensive agents with a central hub designed for UK landlords.
+    </p>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+      {[
+        {
+          title: "StartSafe",
+          desc: "Deliver all required start docs in minutes. Built-in proof of service with no legal gaps.",
+        },
+        {
+          title: "ServeSafe",
+          desc: "Serve S21 and S8 notices with legal accuracy. Timestamped, structured, and secure.",
+        },
+        {
+          title: "TenantScore",
+          desc: "Collect structured tenant feedback twice a year. Get a tenancy score and action plans to boost retention.",
+        },
+        {
+          title: "FixLog",
+          desc: "Tenants report, you get notified, everything’s logged. Automated repair tracking done right.",
+        },
+        {
+          title: "DocVault",
+          desc: "Keep all landlord docs secure, searchable, and ready anytime. Encrypted end-to-end.",
+        },
+        {
+          title: "KeyTrack",
+          desc: "Log every key handover and return with time-stamped proof. Avoid disputes instantly.",
+        },
+        {
+          title: "InventoryPro",
+          desc: "Generate professional inventory reports with photo evidence. Built to stand up in disputes.",
+        },
+        {
+          title: "LLM Bot Assistant",
+          desc: "Ask anything. Your AI legal assistant is trained on UK landlord law.",
+        },
+      ].map((f, i) => (
+        <div key={i} className="bg-white p-6 rounded shadow">
+          <h3 className="font-bold text-xl mb-2">{f.title}</h3>
+          <p>{f.desc}</p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Testimonials */}
       <section className="bg-white py-20 px-6 text-center">
