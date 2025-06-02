@@ -156,7 +156,8 @@ export default function InventoryProSendPage() {
         <PrintButton componentRef={componentRef} />
       </div>
 
-      <div className="hidden">
+      <div style={{ position: 'absolute', left: '-9999px' }}>
+
         <div ref={componentRef} className="p-6">
           <h1 className="text-2xl font-bold mb-2">Inventory Report</h1>
           <p><strong>Address:</strong> {metadata.address}</p>
