@@ -23,14 +23,21 @@ export default function HomePage() {
         <p className="text-xl mb-10 max-w-3xl mx-auto">
           LetSuite brings all your compliance, documentation, tenant comms, and repairs into one easy-to-use dashboard. No letting agent required.
         </p>
-        <div className="space-x-4 mb-10">
-          <a href="/sign-up" className="bg-white text-blue-700 font-semibold px-6 py-3 rounded shadow hover:bg-blue-100 transition">
-            Try LetSuite Free
-          </a>
-          <a href="/dashboard" className="border border-white px-6 py-3 rounded hover:bg-white hover:text-blue-700 transition">
-            View Dashboard
-          </a>
-        </div>
+       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
+  <a
+    href="/sign-up"
+    className="bg-white text-blue-700 font-semibold px-6 py-3 rounded shadow hover:bg-blue-100 transition w-full sm:w-auto text-center"
+  >
+    Try LetSuite Free
+  </a>
+  <a
+    href="/dashboard"
+    className="border border-white text-white px-6 py-3 rounded hover:bg-white hover:text-blue-700 transition w-full sm:w-auto text-center"
+  >
+    View Dashboard
+  </a>
+</div>
+
         <img
           src="dashboard-screenshot.png"
           alt="LetSuite Dashboard Screenshot"
