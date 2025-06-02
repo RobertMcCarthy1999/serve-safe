@@ -1,40 +1,16 @@
-// components/PrintButton.js
 'use client';
 
-import React, { useRef } from 'react';
-import { useReactToPrint } from 'react-to-print';
+import React from 'react';
+import html2pdf from 'html2pdf.js';
 
 export default function PrintButton({ componentRef }) {
-  const printableRef = useRef();
-  const metadataRef = useRef({});
+  const handleDownload = async () => {
+    if (!componentRef?.current) return;
 
-  const handlePrint = useReactToPrint({
-    content: () => printableRef.current,
-    documentTitle: generateTitle,
-    removeAfterPrint: true,
-  });
-
-  function generateTitle() {
-    const { address = 'Inventory', date = new Date().toISOString().split('T')[0] } = metadataRef.current;
-    const safeAddress = address.replace(/\s+/g, '_').replace(/[^\w-]/g, '');
-    return `${safeAddress}_${date}`;
-  }
-
-  async function prepareContent() {
-    if (!componentRef.current) return;
-
+    // Clone the content to avoid modifying the original DOM
     const clone = componentRef.current.cloneNode(true);
 
-    // Extract metadata
-    const addrText = clone.querySelector('p strong')?.nextSibling?.textContent?.trim();
-    const dateText = [...clone.querySelectorAll('p')]
-      .find(p => p.textContent.includes('Date:'))?.textContent.split(':')[1]?.trim();
-
-    metadataRef.current = {
-      address: addrText || 'Inventory_Report',
-      date: dateText || new Date().toISOString().split('T')[0],
-    };
-
+    // Convert any blob images to base64
     const imgElements = clone.querySelectorAll('img');
     const origImgs = componentRef.current.querySelectorAll('img');
 
@@ -51,31 +27,40 @@ export default function PrintButton({ componentRef }) {
       }
     }
 
-    printableRef.current.innerHTML = '';
-    printableRef.current.appendChild(clone);
-    handlePrint();
-  }
+    // Generate file name
+    const address = clone.querySelector('p strong')?.nextSibling?.textContent?.trim() || 'Inventory_Report';
+    const dateText = [...clone.querySelectorAll('p')]
+      .find(p => p.textContent.includes('Date:'))?.textContent.split(':')[1]?.trim() ||
+      new Date().toISOString().split('T')[0];
 
-  function toBase64(file) {
+    const safeAddress = address.replace(/\s+/g, '_').replace(/[^\w-]/g, '');
+    const fileName = `${safeAddress}_${dateText}.pdf`;
+
+    // Trigger download
+    html2pdf().from(clone).set({
+      margin: 0.5,
+      filename: fileName,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    }).save();
+  };
+
+  const toBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onloadend = () => resolve(reader.result);
       reader.onerror = reject;
       reader.readAsDataURL(file);
     });
-  }
+  };
 
   return (
-    <>
-      <button
-        onClick={prepareContent}
-        className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800"
-      >
-        🖨️ Download PDF
-      </button>
-      <div style={{ display: 'none' }}>
-        <div ref={printableRef} />
-      </div>
-    </>
+    <button
+      onClick={handleDownload}
+      className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800"
+    >
+      📄 Download PDF
+    </button>
   );
 }
