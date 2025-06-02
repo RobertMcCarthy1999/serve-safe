@@ -123,7 +123,7 @@ export default function Dashboard() {
                     if (title === 'StartSafe') {
                       router.push('/startsafe');
                     } else if (title === 'InventoryPro') {
-                      router.push('/inventorypro/send');
+                      router.push('/inventorypro'); // ✅ Updated route
                     } else if (title === 'ServeSafe') {
                       setSelectedTool(title);
                       setModalOpen(true);
