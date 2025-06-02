@@ -1,16 +1,18 @@
 'use client';
 
 import React from 'react';
-import html2pdf from 'html2pdf.js';
 
 export default function PrintButton({ componentRef }) {
   const handleDownload = async () => {
     if (!componentRef?.current) return;
 
-    // Clone the content to avoid modifying the original DOM
+    // Dynamically import html2pdf only on client
+    const html2pdf = (await import('html2pdf.js')).default;
+
+    // Clone content
     const clone = componentRef.current.cloneNode(true);
 
-    // Convert any blob images to base64
+    // Convert blob images to base64
     const imgElements = clone.querySelectorAll('img');
     const origImgs = componentRef.current.querySelectorAll('img');
 
@@ -36,7 +38,7 @@ export default function PrintButton({ componentRef }) {
     const safeAddress = address.replace(/\s+/g, '_').replace(/[^\w-]/g, '');
     const fileName = `${safeAddress}_${dateText}.pdf`;
 
-    // Trigger download
+    // Generate PDF
     html2pdf().from(clone).set({
       margin: 0.5,
       filename: fileName,
