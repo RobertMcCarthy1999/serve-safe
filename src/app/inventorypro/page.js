@@ -6,7 +6,7 @@ export default function InventoryProLanding() {
   return (
     <main className="bg-white">
       {/* Hero */}
-      <section className="bg-gray-100 py-20 px-4">
+      <section className="bg-gray-100 py-12 px-4">
   <div className="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-12">
     <div>
       <h1 className="text-4xl md:text-5xl font-bold mb-4">InventoryPro for Landlords</h1>
