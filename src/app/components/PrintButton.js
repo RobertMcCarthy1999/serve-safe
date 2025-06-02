@@ -10,20 +10,22 @@ export default function PrintButton({ componentRef }) {
 
   const handlePrint = useReactToPrint({
     content: () => printableRef.current,
-    documentTitle: () => generateTitle(),
+    documentTitle: generateTitle,
     removeAfterPrint: true,
   });
 
-  const generateTitle = () => {
+  function generateTitle() {
     const { address = 'Inventory', date = new Date().toISOString().split('T')[0] } = metadataRef.current;
     const safeAddress = address.replace(/\s+/g, '_').replace(/[^\w-]/g, '');
     return `${safeAddress}_${date}`;
-  };
+  }
 
-  const prepareContent = async () => {
+  async function prepareContent() {
     if (!componentRef.current) return;
 
     const clone = componentRef.current.cloneNode(true);
+
+    // Extract metadata
     const addrText = clone.querySelector('p strong')?.nextSibling?.textContent?.trim();
     const dateText = [...clone.querySelectorAll('p')]
       .find(p => p.textContent.includes('Date:'))?.textContent.split(':')[1]?.trim();
@@ -41,7 +43,7 @@ export default function PrintButton({ componentRef }) {
       if (origSrc?.startsWith('blob:')) {
         try {
           const blob = await fetch(origSrc).then(res => res.blob());
-          const base64 = await fileToBase64(blob);
+          const base64 = await toBase64(blob);
           imgElements[i].src = base64;
         } catch (err) {
           console.error('Image conversion error:', err);
@@ -52,15 +54,16 @@ export default function PrintButton({ componentRef }) {
     printableRef.current.innerHTML = '';
     printableRef.current.appendChild(clone);
     handlePrint();
-  };
+  }
 
-  const fileToBase64 = (file) =>
-    new Promise((resolve, reject) => {
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onloadend = () => resolve(reader.result);
       reader.onerror = reject;
       reader.readAsDataURL(file);
     });
+  }
 
   return (
     <>
