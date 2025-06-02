@@ -91,13 +91,17 @@ export default function Dashboard() {
                   key={title}
                   title={title}
                   status={
-                    title === 'StartSafe'
+                    ['StartSafe', 'InventoryPro'].includes(title)
                       ? 'Live'
                       : title === 'LLM Bot Assistant'
                       ? 'Later Stage'
                       : 'Planned'
                   }
-                  action={title === 'StartSafe' ? 'Use Now' : 'Notify Me'}
+                  action={
+                    ['StartSafe', 'InventoryPro'].includes(title)
+                      ? 'Use Now'
+                      : 'Notify Me'
+                  }
                   color={
                     title === 'StartSafe'
                       ? 'bg-blue-500'
@@ -118,6 +122,11 @@ export default function Dashboard() {
                   onClick={() => {
                     if (title === 'StartSafe') {
                       router.push('/startsafe');
+                    } else if (title === 'InventoryPro') {
+                      router.push('/inventorypro/send');
+                    } else if (title === 'ServeSafe') {
+                      setSelectedTool(title);
+                      setModalOpen(true);
                     } else if (title === 'FixLog' && !isPro) {
                       toast.error('Upgrade to Pro to access FixLog');
                     } else {
